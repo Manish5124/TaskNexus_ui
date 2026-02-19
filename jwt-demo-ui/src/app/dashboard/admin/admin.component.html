@@ -1,0 +1,81 @@
+<app-nav-bar></app-nav-bar>
+<div class="main-layout">
+  <app-side-bar></app-side-bar>
+
+  <div class="content">
+
+    <div class="header">
+      <h2>List of Projects</h2>
+
+      <div class="header-actions">
+        <mat-form-field appearance="outline" class="search-field">
+          <!-- <mat-label>Search by Project ID</mat-label> -->
+          <input matInput type="number" [(ngModel)]="searchId" placeholder="Enter ID">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" (click)="searchProjectById()">
+          Search
+        </button>
+
+        <button mat-raised-button color="primary" routerLink="/create-project">
+          + Create Project
+        </button>
+      </div>
+    </div>
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <!-- Project ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef> ID </th>
+        <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+      </ng-container>
+
+      <!-- Project Name Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Project Name </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <!-- Created Date Column -->
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef> Created Date </th>
+        <td mat-cell *matCellDef="let row"> {{row.createdDate | date:'mediumDate'}} </td>
+      </ng-container>
+
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let row">
+          <span [ngClass]="row.isActive ? 'active-status' : 'inactive-status'">
+            {{ row.isActive ? 'Active' : 'Inactive' }}
+          </span>
+        </td>
+      </ng-container>
+
+      <!-- Actions Column -->
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef> Actions </th>
+        <td mat-cell *matCellDef="let project">
+          <button mat-icon-button color="primary" (click)="editProject(project)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="deleteProject(project)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          <button mat-icon-button color="accent" (click)="viewProject(project)">
+            <mat-icon>visibility</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <!-- Header and Row -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
+
+  </div>
+
+</div>

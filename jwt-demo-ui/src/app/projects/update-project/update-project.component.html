@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>Edit Project</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <!-- Project Name (readonly) -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Project Name</mat-label>
+    <input matInput formControlName="projectName">
+  </mat-form-field>
+
+  <!-- Manager Dropdown -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Select Manager</mat-label>
+    <mat-select formControlName="manager">
+      <mat-option *ngFor="let manager of managers" [value]="manager">
+        {{manager}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <!-- Team Members Multi-select -->
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Team Members</mat-label>
+    <mat-select multiple formControlName="members">
+      <mat-option *ngFor="let member of membersList" [value]="member">
+        {{member}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="close()">Cancel</button>
+  <button mat-raised-button color="primary" (click)="save()">Update</button>
+</mat-dialog-actions>

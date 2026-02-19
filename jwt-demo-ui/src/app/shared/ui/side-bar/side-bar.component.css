@@ -1,0 +1,90 @@
+/* Sidebar Container */
+.navbar {
+  width: 250px;
+  height: 100vh;
+  background-color: #393162; /* classic purple */
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+  box-shadow: 2px 0 10px rgba(247, 245, 245, 0.188);
+}
+
+/* Top Icon */
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.top mat-icon {
+  font-size: 32px;
+  color: #ffffff; /* white icon */
+}
+
+/* Menu Header */
+.menu-head {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #ffffff; /* white text */
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+/* Menu Container */
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Buttons */
+.menu-button {
+ display: flex;
+  /* align-items: center; */
+  gap: 12px;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  text-transform: none;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #ffffff !important; /* white text by default */
+  transition: all 0.3s ease;
+  justify-content: flex-start;
+ 
+  /* text-transform: none; */
+  /* font-size: 14px;
+  cursor: pointer; */
+}
+
+/* Button Icons */
+.menu-button mat-icon {
+  font-size: 20px;
+  color: #ffffff; /* white icon */
+  transition: color 0.3s ease;
+}
+
+/* Hover Effect */
+.menu-button:hover {
+  background-color: #9932cc; /* purple background on hover */
+  color: #000000; /* text turns black */
+}
+
+.menu-button:hover mat-icon {
+  color: #000000; /* icon also turns black on hover */
+}
+
+/* Active Route Highlight */
+.active {
+  background-color: #4b0082 !important; /* dark purple for active */
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+/* Logout button spacing */
+.menu-button:last-child {
+  margin-top: 20px;
+}

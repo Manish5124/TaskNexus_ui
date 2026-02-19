@@ -1,0 +1,53 @@
+<div class="navbar">
+
+  <!-- <div class="top">
+    <mat-icon>dashboard</mat-icon>
+  </div> -->
+
+  <div class="menu">
+    <div class="menu-head">
+      <span>Dashboard</span>
+    </div>
+
+    <div class="menu-item">
+
+      <!-- Projects (Default) -->
+      <button mat-button
+              class="menu-button"
+              [routerLink]="['/admin']"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }">
+        <mat-icon>folder</mat-icon>
+        <span>Projects</span>
+      </button>
+
+      <!-- Managers -->
+      <button mat-button
+              class="menu-button"
+              [routerLink]="['/project-manager']"
+              routerLinkActive="active">
+        <mat-icon>supervisor_account</mat-icon>
+        <span>Managers</span>
+      </button>
+
+      <!-- Members -->
+      <button mat-button
+              class="menu-button"
+              [routerLink]="['/member']"
+              routerLinkActive="active">
+        <mat-icon>groups</mat-icon>
+        <span>Members</span>
+      </button>
+
+      <!-- Logout -->
+      <button mat-button
+              class="menu-button"
+              (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+
+    </div>
+  </div>
+
+</div>

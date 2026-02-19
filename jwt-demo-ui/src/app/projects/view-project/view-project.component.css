@@ -1,0 +1,18 @@
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 10px;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #f8fafc;
+  border-radius: 6px;
+}
+
+.detail-row strong {
+  color: #1e293b;
+}

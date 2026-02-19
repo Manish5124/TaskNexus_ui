@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Project Details</h2>
+
+<mat-dialog-content class="dialog-content">
+
+  <div class="detail-row">
+    <strong>Project Name:</strong>
+    <span>{{ data.name }}</span>
+  </div>
+
+  <div class="detail-row">
+    <strong>Created Date:</strong>
+    <span>{{ data.createdDate | date:'mediumDate' }}</span>
+  </div>
+
+  <div class="detail-row">
+    <strong>Manager:</strong>
+    <span>{{ data.manager }}</span>
+  </div>
+
+  <div class="detail-row">
+    <strong>Team Members:</strong>
+    <span>{{ data.members?.join(', ') }}</span>
+  </div>
+
+  <div class="detail-row">
+    <strong>Description:</strong>
+    <span>{{ data.description || 'N/A' }}</span>
+  </div>
+
+  <div class="detail-row">
+    <strong>Active Sprints:</strong>
+    <span>{{ data.activeSprints || '0' }}</span>
+  </div>
+
+  <div class="detail-row">
+    <strong>Active Tasks:</strong>
+    <span>{{ data.activeTasks || '0' }}</span>
+  </div>
+
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-raised-button color="primary" (click)="close()">Close</button>
+</mat-dialog-actions>

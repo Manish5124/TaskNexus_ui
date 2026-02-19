@@ -1,0 +1,72 @@
+<app-nav-bar></app-nav-bar>
+<div class="form-container">
+
+  <h2>Create Project</h2>
+
+  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+    <!-- Project Name -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Project Name</mat-label>
+      <input matInput formControlName="name">
+    </mat-form-field>
+
+    <!-- Created Date -->
+    <!-- <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Created Date</mat-label>
+      <input matInput type="date" formControlName="createdDate">
+    </mat-form-field> -->
+
+    <!-- Description -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Description</mat-label>
+      <textarea
+        matInput
+        formControlName="description"
+        rows="4"
+        placeholder="Enter project description">
+      </textarea>
+    </mat-form-field>
+
+    <!-- Manager Dropdown -->
+    <!-- <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Select Manager</mat-label>
+      <mat-select formControlName="manager">
+        <mat-option *ngFor="let manager of managers" [value]="manager">
+          {{manager}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <!-- Members Multi Select -->
+    <!-- <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Select Members</mat-label>
+      <mat-select formControlName="members" multiple>
+        <mat-option *ngFor="let member of members" [value]="member">
+          {{member}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field> -->
+     <!-- Status Dropdown -->
+    <!-- <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="isActive">
+        <mat-option [value]="true">Active</mat-option>
+        <mat-option [value]="false">Inactive</mat-option>
+      </mat-select>
+    </mat-form-field> -->
+
+    <!-- Buttons -->
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit">
+        Submit
+      </button>
+
+      <button mat-raised-button color="warn" type="button" (click)="goBack()">
+        Back
+      </button>
+    </div>
+
+  </form>
+
+</div>

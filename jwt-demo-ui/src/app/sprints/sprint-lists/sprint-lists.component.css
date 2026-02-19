@@ -1,0 +1,51 @@
+.content {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.progress-container {
+  background: #e0e0e0;
+  border-radius: 20px;
+  height: 20px;
+  width: 100%;
+}
+
+.progress-bar {
+  background: #3f51b5;
+  height: 100%;
+  border-radius: 20px;
+  color: white;
+  text-align: center;
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.status {
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+}
+
+.status.completed {
+  background: #4caf50;
+}
+
+.status.in-progress {
+  background: #ff9800;
+}
+
+.status.pending {
+  background: #f44336;
+}

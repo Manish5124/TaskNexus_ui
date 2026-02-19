@@ -1,0 +1,34 @@
+<h2 mat-dialog-title>
+  {{ isEditMode ? 'Edit Member' : 'Add Member' }}
+</h2>
+
+<form [formGroup]="memberForm">
+
+  <mat-dialog-content>
+
+    <!-- Name (readonly in edit mode) -->
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Name</mat-label>
+      <input matInput formControlName="name" [readonly]="isEditMode">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Project Name</mat-label>
+      <input matInput formControlName="projectName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Manager Name</mat-label>
+      <input matInput formControlName="managerName">
+    </mat-form-field>
+
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="close()">Cancel</button>
+    <button mat-raised-button color="primary" type="button" (click)="save()">
+      {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+  </mat-dialog-actions>
+
+</form>
