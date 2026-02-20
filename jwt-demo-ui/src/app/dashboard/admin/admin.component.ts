@@ -21,55 +21,73 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule,MatButtonModule,MatIconModule,RouterModule,SideBarComponent,MatTableModule,MatPaginatorModule,NavBarComponent,MatDialogModule,MatSnackBarModule,
-    ReactiveFormsModule,FormsModule,MatInputModule,MatFormFieldModule
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule,
+    SideBarComponent,
+    MatTableModule,
+    MatPaginatorModule,
+    NavBarComponent,
+    MatDialogModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
-
-
 export class AdminComponent implements OnInit {
   searchId!: number;
   displayedColumns: string[] = [
     'id',
     'name',
     'createdDate',
-     'status',
+    'status',
     // 'manager',
     // 'members',
-    'actions'
+    'actions',
   ];
 
+  expandedElement: any | null = null;
 
-    constructor(private snackbar:MatSnackBar,private dialog: MatDialog,
-      private projects: ProjectsService
-    ) {}
+  constructor(
+    private snackbar: MatSnackBar,
+    private dialog: MatDialog,
+    private projects: ProjectsService,
+  ) {}
   dataSource = new MatTableDataSource<any>();
 
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   ngOnInit(): void {
-    this.getAllProjects()
+    this.getAllProjects();
   }
 
-  getAllProjects(){
+  getAllProjects() {
     this.projects.getAllProjects().subscribe({
-      next:(res) =>{
-        this.dataSource = new MatTableDataSource(res)
-        this.dataSource.paginator = this.paginator
-        this.dataSource.sort = this.sort
-        console.log("list of project =>", res)
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log('list of project =>', res);
       },
-      error :(res) =>{
-        console.log("error Response"+res)
-      }
-    })
+      error: (res) => {
+        console.log('error Response' + res);
+      },
+    });
   }
 
   ngAfterViewInit() {
@@ -78,28 +96,31 @@ export class AdminComponent implements OnInit {
   }
 
   searchProjectById(): void {
-  if (!this.searchId) {
-    // If input empty, reload full table
-    // this.loadProjects();
-     this.getAllProjects()
-    return;
-  }
-
-  this.projects.getProjectById(this.searchId).subscribe({
-    next: (project: any) => {
-      this.dataSource.data = [project]; // wrap single project in array
-    },
-    error: (err) => {
-      console.error("Error fetching project:", err);
-      this.snackbar.open(`Project with ID ${this.searchId} not found`, 'Close', {
-        duration: 3000,
-        verticalPosition: 'top'
-      });
-      this.dataSource.data = [];
+    if (!this.searchId) {
+      // If input empty, reload full table
+      // this.loadProjects();
+      this.getAllProjects();
+      return;
     }
-  });
-}
 
+    this.projects.getProjectById(this.searchId).subscribe({
+      next: (project: any) => {
+        this.dataSource.data = [project]; // wrap single project in array
+      },
+      error: (err) => {
+        console.error('Error fetching project:', err);
+        this.snackbar.open(
+          `Project with ID ${this.searchId} not found`,
+          'Close',
+          {
+            duration: 3000,
+            verticalPosition: 'top',
+          },
+        );
+        this.dataSource.data = [];
+      },
+    });
+  }
 
   deleteProject(row: Project) {
     // const index =this.dataSource.data.indexOf(row)
@@ -110,64 +131,54 @@ export class AdminComponent implements OnInit {
     //    verticalPosition:'top'
     //   })
     // }
-   this.projects.deleteProjectById(row.id).subscribe({
-  next: (res) => {
-    console.log("Project ID deleted: " + row.id);
-    this.dataSource.data = this.dataSource.data.filter(p => p.id !== row.id);
-    this.snackbar.open("Project Deleted Successfully!", 'Close', {
-      duration: 3000,
-      verticalPosition: 'top'
+    this.projects.deleteProjectById(row.id).subscribe({
+      next: (res) => {
+        console.log('Project ID deleted: ' + row.id);
+        this.dataSource.data = this.dataSource.data.filter(
+          (p) => p.id !== row.id,
+        );
+        this.snackbar.open('Project Deleted Successfully!', 'Close', {
+          duration: 3000,
+          verticalPosition: 'top',
+        });
+      },
+      error: (err) => {
+        console.error('Error deleting project:', err);
+      },
     });
-  },
-  error: (err) => {
-    console.error("Error deleting project:", err);
   }
-});
-
-
-  }
-
-
 
   viewProject(project: any): void {
     this.dialog.open(ViewProjectComponent, {
       width: '800px',
-      data: project
+      data: project,
     });
   }
 
   editProject(project: Project): void {
+    const dialogRef = this.dialog.open(UpdateProjectComponent, {
+      width: '800px',
+      data: { ...project },
+    });
 
-  const dialogRef = this.dialog.open(UpdateProjectComponent, {
-    width: '800px',
-    data: { ...project }
-  });
-
-  dialogRef.afterClosed().subscribe((updatedProject: Project) => {
-
-    if (updatedProject) {
-
-      const projects = this.dataSource.data.map(p =>
-        p.projectName === updatedProject.projectName
-          ? updatedProject
-          : p
-      );
-      localStorage.setItem('projects', JSON.stringify(projects));
-      this.dataSource.data = projects;
-    }
-
-  });
+    dialogRef.afterClosed().subscribe((updatedProject: Project) => {
+      if (updatedProject) {
+        const projects = this.dataSource.data.map((p) =>
+          p.projectName === updatedProject.projectName ? updatedProject : p,
+        );
+        localStorage.setItem('projects', JSON.stringify(projects));
+        this.dataSource.data = projects;
+      }
+    });
   }
-
 }
 
-export interface Project{
-  id:number,
-projectName: string;
-createdDate: string;
-// manager: string;
-isActive: boolean;
+export interface Project {
+  id: number;
+  projectName: string;
+  createdDate: string;
+  // manager: string;
+  isActive: boolean;
 
-// description: string;
-
+  // description: string;
 }

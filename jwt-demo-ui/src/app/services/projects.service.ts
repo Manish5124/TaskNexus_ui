@@ -8,12 +8,12 @@ import { environment } from 'src/environments/environment';
 })
 export class ProjectsService {
 
-  private authApiUrl = environment.apiBaseUrl + '/api/project'
+  private baseUrl = environment.apiBaseUrl + '/api/project'
 
   constructor(private http: HttpClient) { }
 
   getAllProjects(){
-    return this.http.get<any>('http://localhost:8080/api/project')
+    return this.http.get<any>(this.baseUrl)
   }
 
   deleteProjectById(id:number){

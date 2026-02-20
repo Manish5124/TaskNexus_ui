@@ -14,7 +14,7 @@
           <input matInput type="number" [(ngModel)]="searchId" placeholder="Search by ID">
         </mat-form-field>
 
-        <button mat-raised-button class="action-btn search-btn" (click)="searchProjectById()">
+        <button mat-raised-button class="action-btn search-btn project-search" (click)="searchProjectById()">
           Search
         </button>
 
@@ -24,53 +24,142 @@
       </div>
     </div>
 
-    <div class="table-container">
-      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-        <!-- Columns unchanged -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
-          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-        </ng-container>
+   <div class="table-container">
 
-        <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Project Name </th>
-          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-        </ng-container>
+  <table mat-table [dataSource]="dataSource"
+         multiTemplateDataRows
+         class="mat-elevation-z8">
 
-        <ng-container matColumnDef="createdDate">
-          <th mat-header-cell *matHeaderCellDef> Created Date </th>
-          <td mat-cell *matCellDef="let row"> {{row.createdDate | date:'mediumDate'}} </td>
-        </ng-container>
+    <!-- ID -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="status">
-          <th mat-header-cell *matHeaderCellDef> Status </th>
-          <td mat-cell *matCellDef="let row">
-            <span [ngClass]="row.isActive ? 'active-status' : 'inactive-status'">
-              {{ row.isActive ? 'Active' : 'Inactive' }}
-            </span>
-          </td>
-        </ng-container>
+    <!-- Name -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Project Name </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
 
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> Actions </th>
-          <td mat-cell *matCellDef="let project">
-            <button mat-icon-button color="primary" (click)="editProject(project)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="deleteProject(project)">
-              <mat-icon>delete</mat-icon>
-            </button>
-            <button mat-icon-button color="accent" (click)="viewProject(project)">
-              <mat-icon>visibility</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+    <!-- Created Date -->
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef> Created Date </th>
+      <td mat-cell *matCellDef="let row">
+        {{row.createdDate | date:'mediumDate'}}
+      </td>
+    </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-    </div>
+    <!-- Status -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let row">
+        <span [ngClass]="row.isActive ? 'active-status' : 'inactive-status'">
+          {{ row.isActive ? 'Active' : 'Inactive' }}
+        </span>
+      </td>
+    </ng-container>
 
+    <!-- Actions -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let project">
+
+        <!-- Expand Button -->
+        <button mat-icon-button
+                (click)="expandedElement = expandedElement === project ? null : project">
+          <mat-icon>
+            {{expandedElement === project ? 'expand_less' : 'expand_more'}}
+          </mat-icon>
+        </button>
+
+        <button mat-icon-button color="primary" (click)="editProject(project)">
+          <mat-icon>edit</mat-icon>
+        </button>
+
+        <button mat-icon-button color="warn" (click)="deleteProject(project)">
+          <mat-icon>delete</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <!-- Expanded Content -->
+    <ng-container matColumnDef="expandedDetail">
+      <td mat-cell *matCellDef="let project"
+          [attr.colspan]="displayedColumns.length">
+
+        <div *ngIf="expandedElement === project" class="expanded-content">
+           <h3 class="section-heading">Sprints</h3>
+
+          <!-- SPRINT ACCORDION -->
+          <mat-accordion *ngIf="project.sprints?.length > 0">
+
+            <mat-expansion-panel *ngFor="let sprint of project.sprints">
+
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  📂 {{ sprint.name }}
+                </mat-panel-title>
+                <mat-panel-description>
+                  {{ sprint.startDate }} → {{ sprint.endDate }}
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+
+              <!-- TASKS -->
+               <h4 class="section-subheading">Tasks</h4>
+              <mat-accordion *ngIf="sprint.tasks?.length > 0">
+                 
+
+                <mat-expansion-panel *ngFor="let task of sprint.tasks">
+
+                  <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      📝 {{ task.title }}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      {{ task.status }} | {{ task.priority }}
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+
+                  <p><strong>Description:</strong> {{ task.description }}</p>
+                  <p><strong>Start:</strong> {{ task.startDate }}</p>
+                  <p><strong>Due:</strong> {{ task.dueDate }}</p>
+                  <p><strong>User ID:</strong> {{ task.userId }}</p>
+
+                </mat-expansion-panel>
+
+              </mat-accordion>
+
+              <div *ngIf="!sprint.tasks?.length">
+                No tasks in this sprint.
+              </div>
+
+            </mat-expansion-panel>
+
+          </mat-accordion>
+
+          <div *ngIf="!project.sprints?.length">
+            No sprints available.
+          </div>
+
+        </div>
+
+      </td>
+    </ng-container>
+
+    <!-- Normal Row -->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Expanded Row -->
+    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']"
+        class="expanded-row">
+    </tr>
+
+  </table>
+
+</div>
     <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
 
   </div>
