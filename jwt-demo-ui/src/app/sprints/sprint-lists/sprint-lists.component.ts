@@ -1,5 +1,6 @@
+
 import { Component, ViewChild } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
@@ -11,47 +12,64 @@ import { NavBarComponent } from 'src/app/shared/ui/nav-bar/nav-bar.component';
 import { CreateSprintComponent } from '../create-sprint/create-sprint.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { SprintsService } from 'src/app/services/sprints.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sprint-lists',
   standalone: true,
-  imports: [CommonModule,NavBarComponent,MatIconModule,MatTableModule,MatPaginatorModule,
-    MatButtonModule,MatDialogModule,MatCardModule,
+  imports: [
+    CommonModule,
+    NavBarComponent,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatDialogModule,
+    MatCardModule,
+    MatSnackBarModule
   ],
+  providers: [DatePipe],
   templateUrl: './sprint-lists.component.html',
   styleUrls: ['./sprint-lists.component.css']
 })
 export class SprintListsComponent {
-   displayedColumns: string[] = [
-    'name', 'startDate','createdDate', 'endDate', 'actions'
+  displayedColumns: string[] = [
+    'name','createdDate', 'startDate', 'endDate', 'actions'
   ];
 
   dataSource = new MatTableDataSource<Sprint>([]);
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
-    constructor(private dialog: MatDialog, private sprintService: SprintsService) {}
+
+  constructor(
+    private dialog: MatDialog,
+    private sprintService: SprintsService,
+    private snackbar: MatSnackBar,
+    private datePipe: DatePipe,
+    private router: Router
+  ) {}
 
   ngOnInit() {
-    this.getAllSprints()
-    const storedData = localStorage.getItem('sprints');
-    if (storedData) {
-      this.dataSource.data = JSON.parse(storedData);
-    }
+    this.getAllSprints();
   }
 
-  getAllSprints(){
+  getAllSprints() {
     this.sprintService.getAllSprints().subscribe({
-      next:(res) =>{
-        this.dataSource = new MatTableDataSource(res)
-        this.dataSource.paginator = this.paginator
-        this.dataSource.sort = this.sort
-        console.log("Sprint Response ===>",res)
+      next: (res: any[]) => {
+        this.dataSource.data = res.map(s => ({
+          ...s,
+          createdDate: this.datePipe.transform(s.createdDate, 'yyyy-MM-dd')
+        }));
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log("Sprint Response ===>", res);
       },
-      error :(res) =>{
-        console.log("error Response"+res)
+      error: (err) => {
+        console.error("Error fetching sprints:", err);
       }
-    })
-
+    });
   }
 
   ngAfterViewInit() {
@@ -69,16 +87,28 @@ export class SprintListsComponent {
     const dialogRef = this.dialog.open(CreateSprintComponent, { width: '500px' });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const newSprint: Sprint = {
-          id: this.getNextId(),
-          ...result
-        };
+      if (!result) return;
 
-        const updatedData = [...this.dataSource.data, newSprint];
-        this.dataSource.data = updatedData;
-        localStorage.setItem('sprints', JSON.stringify(updatedData));
-      }
+      this.sprintService.createSprint(result).subscribe({
+        next: () => {
+          console.log('Sprint saved on backend');
+
+          // Refresh table from backend
+          this.getAllSprints();
+
+          this.snackbar.open('Sprint Created Successfully!', 'Close', {
+            duration: 2000,
+            verticalPosition: 'top'
+          });
+        },
+        error: (err) => {
+          console.error('Error creating sprint:', err);
+          this.snackbar.open('Failed to create sprint', 'Close', {
+            duration: 2000,
+            verticalPosition: 'top'
+          });
+        }
+      });
     });
   }
 
@@ -90,7 +120,6 @@ export class SprintListsComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        // Auto update status if end date <= today
         const today = new Date();
         const endDate = new Date(result.endDate);
         if (endDate <= today) {
@@ -112,27 +141,22 @@ export class SprintListsComponent {
     this.dataSource.data = updatedData;
     localStorage.setItem('sprints', JSON.stringify(updatedData));
   }
-  viewSprint(id:number){
-    console.log("View Sprint")
+
+  viewSprint(id: number) {
+    console.log("View Sprint");
   }
+
+  assignTask() {
+  this.router.navigate(['/assign-tasks']);  // adjust route if needed
 }
+}
+
+
 export interface Sprint {
   id: number;
   name: string;
-  projectName: string;
   startDate: string;
   endDate: string;
-  createdDate:string;
-  // status: string;
-  // tasks: string;
+  createdDate?: string;
+  // projectName:string
 }
-
-//  {
-//         "id": 1,
-//         "name": "Sprint 1",
-//         "startDate": "2026-02-20",
-//         "endDate": "2026-03-05",
-//         "tasks": [],
-//         "createdDate": "2026-02-17T15:12:43.212822",
-//         "updatedDate": "2026-02-17T15:12:43.734764"
-//     },

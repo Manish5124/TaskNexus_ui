@@ -1,24 +1,102 @@
-/* Medium dialog box */
+/* Dialog container */
 ::ng-deep .mat-dialog-container {
-  width: 450px !important;   /* medium size like login modal */
+  width: 420px !important;
   max-width: 95vw;
-  padding: 24px;
-  border-radius: 8px;
+  padding: 28px 24px !important;
+  border-radius: 16px !important;
+  background: linear-gradient(135deg, #f5f4f8, #e8e6f0) !important;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2) !important;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-/* Form layout inside dialog */
-.dialog-content {
+/* Dialog title */
+::ng-deep .mat-dialog-title {
+  font-size: 20px !important;
+  font-weight: 700 !important;
+  color: #513162 !important;
+  margin-bottom: 20px !important;
+  text-align: center;
+}
+
+/* Dialog content layout */
+::ng-deep .dialog-content {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-/* Full width form fields */
-.full-width {
-  width: 100%;
+/* Mat form field container */
+::ng-deep .mat-form-field {
+  width: 100% !important;
+  border-radius: 12px !important;
+  background: rgba(81,49,98,0.05) !important;
+  padding: 4px 8px !important;
 }
 
-/* Optional: smaller font for select & input for clean look */
-.mat-form-field {
-  font-size: 14px;
+/* Outline style */
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  border-radius: 12px !important;
+  border-color: rgba(81,49,98,0.3) !important;
+}
+
+/* Input element */
+::ng-deep .mat-input-element {
+  color: #513162 !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.5px;
+  padding: 10px 8px !important;
+}
+
+/* Placeholder text */
+::ng-deep .mat-input-element::placeholder {
+  color: rgba(81,49,98,0.6) !important;
+  font-style: italic;
+  font-weight: 500;
+}
+
+/* Focused outline glow */
+::ng-deep .mat-form-field.mat-focused .mat-form-field-outline {
+  border-color: #6f3d82 !important;
+  box-shadow: 0 0 8px rgba(156,93,178,0.3) !important;
+}
+
+/* Dialog actions layout */
+::ng-deep .mat-dialog-actions {
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 12px !important;
+  margin-top: 16px !important;
+}
+
+/* Cancel button */
+::ng-deep button.cancel-btn {
+  background: #ddd !important;
+  color: #513162 !important;
+  font-weight: 600 !important;
+  border-radius: 12px !important;
+  padding: 8px 18px !important;
+  text-transform: none !important;
+  transition: 0.3s ease !important;
+}
+
+::ng-deep button.cancel-btn:hover {
+  background: #ccc !important;
+}
+
+/* Update button */
+::ng-deep button.update-btn {
+  background: linear-gradient(135deg, #513162, #6f3d82) !important;
+  color: white !important;
+  font-weight: 600 !important;
+  text-transform: none !important;
+  border-radius: 12px !important;
+  padding: 8px 20px !important;
+  transition: 0.3s ease !important;
+}
+
+::ng-deep button.update-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 20px rgba(81, 49, 98, 0.4) !important;
 }

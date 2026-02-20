@@ -1,0 +1,116 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="main-layout">
+  <div class="content">
+
+    <!-- Header -->
+    <div class="header">
+      <h2>Assign Task</h2>
+    </div>
+
+    <!-- Form Card -->
+    <div class="form-container">
+
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+
+        <!-- ===================== -->
+        <!-- Task Name -->
+        <!-- ===================== -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Task Name</mat-label>
+          <input matInput formControlName="taskName" />
+          <mat-error *ngIf="taskForm.get('taskName')?.touched && taskForm.get('taskName')?.invalid">
+            Task Name is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- ===================== -->
+        <!-- Sprint Name -->
+        <!-- ===================== -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Sprint Name</mat-label>
+          <mat-select formControlName="sprintId">
+            <mat-option *ngFor="let sprint of sprintList" [value]="sprint.id">
+              {{ sprint.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="taskForm.get('sprintId')?.touched && taskForm.get('sprintId')?.invalid">
+            Sprint is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- ===================== -->
+        <!-- Member Name -->
+        <!-- ===================== -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Member Name</mat-label>
+          <mat-select formControlName="memberId">
+            <mat-option *ngFor="let member of memberList" [value]="member.id">
+              {{ member.name }}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="taskForm.get('memberId')?.touched && taskForm.get('memberId')?.invalid">
+            Member is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- ===================== -->
+        <!-- Priority -->
+        <!-- ===================== -->
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Priority</mat-label>
+          <mat-select formControlName="priority">
+            <mat-option value="Low">Low</mat-option>
+            <mat-option value="Medium">Medium</mat-option>
+            <mat-option value="High">High</mat-option>
+          </mat-select>
+          <mat-error *ngIf="taskForm.get('priority')?.touched && taskForm.get('priority')?.invalid">
+            Priority is required
+          </mat-error>
+        </mat-form-field>
+
+        <!-- ===================== -->
+        <!-- Dates Row -->
+        <!-- ===================== -->
+        <div class="date-row">
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>Created Date</mat-label>
+            <input matInput type="date" formControlName="createdDate" />
+            <mat-error *ngIf="taskForm.get('createdDate')?.touched && taskForm.get('createdDate')?.invalid">
+              Created Date is required
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="half-width">
+            <mat-label>End Date</mat-label>
+            <input matInput type="date" formControlName="endDate" />
+            <mat-error *ngIf="taskForm.get('endDate')?.touched && taskForm.get('endDate')?.invalid">
+              End Date is required
+            </mat-error>
+          </mat-form-field>
+
+        </div>
+
+        <!-- ===================== -->
+        <!-- Buttons -->
+        <!-- ===================== -->
+        <div class="button-group">
+
+          <button type="submit" class="add-btn">
+            <mat-icon>check_circle</mat-icon>
+            Save Task
+          </button>
+
+          <button type="button" class="cancel-btn" routerLink="/sprint-list">
+            Cancel
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+</div>

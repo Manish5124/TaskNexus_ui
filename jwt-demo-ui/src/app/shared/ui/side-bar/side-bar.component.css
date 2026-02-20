@@ -2,11 +2,12 @@
 .navbar {
   width: 250px;
   height: 100vh;
-  background-color: #393162; /* classic purple */
+  background-color: #513162;
+  /* background-color: #afacc0; */
   display: flex;
   flex-direction: column;
   padding: 20px 15px;
-  box-shadow: 2px 0 10px rgba(247, 245, 245, 0.188);
+  /* box-shadow: 2px 0 10px rgba(247, 245, 245, 0.188); */
 }
 
 /* Top Icon */
@@ -54,7 +55,7 @@
   color: #ffffff !important; /* white text by default */
   transition: all 0.3s ease;
   justify-content: flex-start;
- 
+
   /* text-transform: none; */
   /* font-size: 14px;
   cursor: pointer; */
@@ -69,18 +70,19 @@
 
 /* Hover Effect */
 .menu-button:hover {
-  background-color: #9932cc; /* purple background on hover */
+  /* background-color: #9932cc;  */
+  background-color:#edeaef;
   color: #000000; /* text turns black */
 }
 
 .menu-button:hover mat-icon {
-  color: #000000; /* icon also turns black on hover */
+  /* color: #000000;  */
 }
 
 /* Active Route Highlight */
 .active {
-  background-color: #4b0082 !important; /* dark purple for active */
-  color: #ffffff !important;
+  /* background-color: #4b0082 !important;  */
+  color: #a898b0 !important;
   font-weight: 600;
 }
 

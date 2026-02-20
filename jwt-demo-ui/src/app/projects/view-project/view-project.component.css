@@ -1,18 +1,70 @@
+/* Dialog container */
+.mat-dialog-container {
+  border-radius: 16px;
+  background: #f5f4f8; /* light comfortable background */
+  padding: 24px;
+  max-width: 500px;
+  color: #1e293b;
+  font-family: 'Roboto', sans-serif;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+/* Dialog title */
+.mat-dialog-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #513162;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* Dialog content */
 .dialog-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-  padding-top: 10px;
+  gap: 14px;
 }
 
+/* Individual detail row */
 .detail-row {
   display: flex;
   justify-content: space-between;
-  padding: 10px;
-  background-color: #f8fafc;
-  border-radius: 6px;
+  padding: 12px 16px;
+  background-color: rgba(81, 49, 98, 0.05); /* subtle purple tint */
+  border-radius: 8px;
+  transition: 0.2s ease;
+}
+
+.detail-row:hover {
+  background-color: rgba(81, 49, 98, 0.12);
 }
 
 .detail-row strong {
-  color: #1e293b;
+  color: #513162;
+}
+
+/* Dialog actions container */
+.mat-dialog-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* Gradient action button (like Project/Member buttons) */
+.action-btn {
+  background: linear-gradient(135deg, #513162, #6f3d82);
+  border: none;
+  border-radius: 12px;
+  padding: 10px 22px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  text-transform: none;
+  transition: 0.3s ease;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(81, 49, 98, 0.4);
 }

@@ -1,4 +1,88 @@
-/* You can add global styles to this file, and also import other style files */
+/* Dialog container: properly sized and styled */
+::ng-deep .mat-dialog-container {
+  width: 500px !important;
+  max-width: 95vw;
+  padding: 30px 28px;
+  border-radius: 16px;
+  background: #f5f4f8; /* light comfortable background */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+/* Dialog title */
+::ng-deep .mat-dialog-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #513162;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+/* Dialog content spacing */
+::ng-deep .dialog-content {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Input fields */
+::ng-deep .mat-form-field {
+  font-size: 14px;
+  background: rgba(81, 49, 98, 0.05);
+  border-radius: 12px;
+  padding: 4px 8px;
+}
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  color: rgba(81,49,98,0.3) !important;
+}
+
+::ng-deep .mat-input-element {
+  color: #513162 !important;
+}
+
+::ng-deep .mat-input-element::placeholder {
+  color: rgba(81,49,98,0.6);
+}
+
+/* Dialog actions spacing */
+::ng-deep .mat-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* Update button: gradient like Project/Member */
+::ng-deep .mat-raised-button.update-btn {
+  background: linear-gradient(135deg, #513162, #6f3d82) !important;
+  color: white !important;
+  font-weight: 600;
+  text-transform: none;
+  border-radius: 12px !important;
+  padding: 10px 24px !important;
+  transition: 0.3s ease;
+}
+
+::ng-deep .mat-raised-button.update-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(81, 49, 98, 0.4);
+}
+
+/* Cancel button styling */
+::ng-deep .mat-button.cancel-btn {
+  background: #ddd !important;
+  color: #513162 !important;
+  font-weight: 600;
+  border-radius: 12px !important;
+  padding: 10px 22px !important;
+  text-transform: none;
+  transition: 0.3s ease;
+}
+
+::ng-deep .mat-button.cancel-btn:hover {
+  background: #ccc;
+}

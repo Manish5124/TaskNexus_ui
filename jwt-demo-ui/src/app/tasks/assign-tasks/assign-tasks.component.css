@@ -1,0 +1,109 @@
+/* ============================= */
+/* Layout */
+/* ============================= */
+
+.main-layout {
+  display: flex;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  padding: 30px;
+  min-height: 100vh;
+  background: #eceaf1;
+}
+
+/* ============================= */
+/* Header */
+/* ============================= */
+
+.header h2 {
+  color: #2d1f3d;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+/* ============================= */
+/* Form Container */
+/* ============================= */
+
+.form-container {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  max-width: 700px;
+}
+
+/* ============================= */
+/* Form Fields */
+/* ============================= */
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.half-width {
+  width: 48%;
+  margin-bottom: 20px;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* ============================= */
+/* Buttons */
+/* ============================= */
+
+.button-group {
+  width: 100%;
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+/* Save Button (Same as Sprint Button) */
+.add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #513162, #6f3d82);
+  border: none;
+  border-radius: 12px;
+  padding: 8px 20px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+  text-transform: none;
+  font-size: 14px;
+}
+
+.add-btn mat-icon {
+  font-size: 18px;
+}
+
+.add-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(81, 49, 98, 0.4);
+}
+
+/* Cancel Button */
+.cancel-btn {
+  background: #f1f1f1;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 20px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+.cancel-btn:hover {
+  background: #e0e0e0;
+}

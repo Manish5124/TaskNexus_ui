@@ -24,24 +24,16 @@ export class CreateProjectComponent {
 
     projectForm!: FormGroup;
 
-  // managers: string[] = ['John Doe', 'Jane Smith', 'Robert Brown'];
-  // members: string[] = ['Alice', 'Bob', 'Charlie', 'David', 'Emma'];
-
   constructor(private fb: FormBuilder, private router: Router, private projectservice: ProjectsService, private snackbar: MatSnackBar) {}
 
   ngOnInit(): void {
     this.projectForm = this.fb.group({
       name: ['', Validators.required],
-      // createdDate: ['', Validators.required],
-      // manager: ['', Validators.required],
-      // members: [[], Validators.required],
       description: [[], Validators.required],
-      // isActive: [true]
 
     });
 
   }
-  // }
 onSubmit(): void {
   if (this.projectForm.invalid) {
     return;
@@ -50,15 +42,13 @@ onSubmit(): void {
   const data = {
     name: this.projectForm.get('name')?.value,
     description: this.projectForm.get('description')?.value,
-    // createdDate: this.projectForm.get('createdDate')?.value,
-    //   status: this.projectForm.get('isActive')?.value
   };
 
   console.log("Form Data --->", data);
 
   this.projectservice.createProject(data).subscribe({
     next: (res) => {
-      console.log("Project Created +++", res); // res is plain text now
+      console.log("Project Created +++", res);
 
       this.snackbar.open('Project Created Successfully!', 'Close', {
         duration: 2000,
@@ -75,10 +65,6 @@ onSubmit(): void {
 
 }
 
-      // Save to localStorage (for demo)
-      // const existingProjects = JSON.parse(localStorage.getItem('projects') || '[]');
-      // existingProjects.push(newProject);
-      // localStorage.setItem('projects', JSON.stringify(existingProjects))
 
   goBack() {
     this.router.navigate(['/admin']);

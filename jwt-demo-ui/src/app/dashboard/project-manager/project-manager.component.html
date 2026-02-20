@@ -7,57 +7,57 @@
 
     <div class="header">
       <h2>Project Managers</h2>
-      <button mat-raised-button color="primary" (click)="openAddManagerDialog()">
+      <button mat-raised-button class="action-btn" (click)="openAddManagerDialog()">
         <mat-icon>add</mat-icon> Add Manager
       </button>
     </div>
 
-    <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- Table Container Wrapper -->
+    <div class="table-container">
+      <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
+        <!-- ID Column -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
 
-      <!-- Manager Name -->
-      <ng-container matColumnDef="managerName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Manager Name </th>
-        <td mat-cell *matCellDef="let element"> {{element.managerName}} </td>
-      </ng-container>
+        <!-- Manager Name -->
+        <ng-container matColumnDef="managerName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Manager Name </th>
+          <td mat-cell *matCellDef="let element"> {{element.managerName}} </td>
+        </ng-container>
 
-      <!-- Assigned Project -->
-      <ng-container matColumnDef="assignedProject">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Assigned Project </th>
-        <td mat-cell *matCellDef="let element"> {{element.assignedProject}} </td>
-      </ng-container>
+        <!-- Assigned Project -->
+        <ng-container matColumnDef="assignedProject">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Assigned Project </th>
+          <td mat-cell *matCellDef="let element"> {{element.assignedProject}} </td>
+        </ng-container>
 
-      <!-- Created Date -->
-      <ng-container matColumnDef="createdDate">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Created Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
-      </ng-container>
+        <!-- Created Date -->
+        <ng-container matColumnDef="createdDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Created Date </th>
+          <td mat-cell *matCellDef="let element"> {{element.createdDate}} </td>
+        </ng-container>
 
-      <!-- Actions -->
-      <ng-container matColumnDef="actions">
-        <th mat-header-cell *matHeaderCellDef> Actions </th>
-        <td mat-cell *matCellDef="let manager">
-          <!-- <button mat-icon-button color="primary" (click)="editManager(manager)">
-            <mat-icon>edit</mat-icon>
-          </button> -->
-          <button mat-icon-button color="warn" (click)="deleteManager(manager.id)">
-            <mat-icon>delete</mat-icon>
-          </button>
-        </td>
-      </ng-container>
+        <!-- Actions -->
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <td mat-cell *matCellDef="let manager">
+            <button mat-icon-button color="warn" (click)="deleteManager(manager.id)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
 
-    </table>
-
-    <mat-paginator [pageSizeOptions]="[5,10,25,50]" showFirstLastButtons>
-    </mat-paginator>
+      <!-- Paginator inside the same container -->
+      <mat-paginator [pageSizeOptions]="[5,10,25,50]" showFirstLastButtons>
+      </mat-paginator>
+    </div>
 
   </div>
 </div>

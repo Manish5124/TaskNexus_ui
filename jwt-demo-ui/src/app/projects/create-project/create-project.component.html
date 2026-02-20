@@ -1,72 +1,36 @@
-<app-nav-bar></app-nav-bar>
-<div class="form-container">
+=<app-nav-bar></app-nav-bar>
 
-  <h2>Create Project</h2>
+<div class="form-wrapper">
 
-  <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+  <!-- Left Side: Illustration + Info -->
+  <div class="form-left">
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="project creation icon">
+    <h2>Create New Project</h2>
+    <p>Fill in the details below to create your project</p>
+  </div>
 
-    <!-- Project Name -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Project Name</mat-label>
-      <input matInput formControlName="name">
-    </mat-form-field>
+  <!-- Right Side: Form -->
+  <div class="form-right">
+    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
 
-    <!-- Created Date -->
-    <!-- <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Created Date</mat-label>
-      <input matInput type="date" formControlName="createdDate">
-    </mat-form-field> -->
+      <!-- Project Name -->
+      <div class="input-group">
+        <input matInput formControlName="name" placeholder="Project Name">
+      </div>
 
-    <!-- Description -->
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Description</mat-label>
-      <textarea
-        matInput
-        formControlName="description"
-        rows="4"
-        placeholder="Enter project description">
-      </textarea>
-    </mat-form-field>
+      <!-- Description -->
+      <div class="input-group">
+        <textarea matInput formControlName="description" placeholder="Project Description"></textarea>
+      </div>
 
-    <!-- Manager Dropdown -->
-    <!-- <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Select Manager</mat-label>
-      <mat-select formControlName="manager">
-        <mat-option *ngFor="let manager of managers" [value]="manager">
-          {{manager}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field> -->
+      <!-- Buttons -->
+      <div class="button-group">
+        <button type="submit" class="action-btn submit-btn">Submit</button>
+        <button type="button" class="action-btn back-btn" (click)="goBack()">Back</button>
+      </div>
 
-    <!-- Members Multi Select -->
-    <!-- <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Select Members</mat-label>
-      <mat-select formControlName="members" multiple>
-        <mat-option *ngFor="let member of members" [value]="member">
-          {{member}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field> -->
-     <!-- Status Dropdown -->
-    <!-- <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="isActive">
-        <mat-option [value]="true">Active</mat-option>
-        <mat-option [value]="false">Inactive</mat-option>
-      </mat-select>
-    </mat-form-field> -->
-
-    <!-- Buttons -->
-    <div class="button-group">
-      <button mat-raised-button color="primary" type="submit">
-        Submit
-      </button>
-
-      <button mat-raised-button color="warn" type="button" (click)="goBack()">
-        Back
-      </button>
-    </div>
-
-  </form>
+    </form>
+  </div>
 
 </div>
+

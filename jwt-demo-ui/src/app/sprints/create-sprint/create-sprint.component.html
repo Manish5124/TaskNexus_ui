@@ -1,19 +1,26 @@
-<h2 mat-dialog-title>{{ isEditMode ? 'Edit Sprint' : 'Create Sprint' }}</h2>
+<h2 mat-dialog-title>Create Sprint</h2>
 
 <form [formGroup]="sprintForm">
 
   <mat-dialog-content>
 
+    <!-- Sprint Name -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Name</mat-label>
-      <input matInput formControlName="name" [readonly]="isEditMode">
+      <input matInput formControlName="name">
     </mat-form-field>
 
+    <!-- Project Dropdown (if you are using projectId) -->
     <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Project</mat-label>
-      <input matInput formControlName="projectName">
+      <mat-label>Select Project</mat-label>
+      <mat-select formControlName="projectId">
+        <mat-option *ngFor="let project of projects" [value]="project.id">
+          {{ project.name }}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
 
+    <!-- Start Date -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>Start Date</mat-label>
       <input matInput [matDatepicker]="startPicker" formControlName="startDate">
@@ -21,6 +28,7 @@
       <mat-datepicker #startPicker></mat-datepicker>
     </mat-form-field>
 
+    <!-- End Date -->
     <mat-form-field appearance="outline" class="full-width">
       <mat-label>End Date</mat-label>
       <input matInput [matDatepicker]="endPicker" formControlName="endDate">
@@ -28,24 +36,18 @@
       <mat-datepicker #endPicker></mat-datepicker>
     </mat-form-field>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Status</mat-label>
-      <mat-select formControlName="status">
-        <mat-option *ngFor="let s of statusOptions" [value]="s">{{ s }}</mat-option>
-      </mat-select>
-    </mat-form-field>
-
-    <mat-form-field appearance="outline" class="full-width">
+    <!-- Tasks -->
+    <!-- <mat-form-field appearance="outline" class="full-width">
       <mat-label>Tasks</mat-label>
       <textarea matInput formControlName="tasks" rows="3"></textarea>
-    </mat-form-field>
+    </mat-form-field> -->
 
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
     <button mat-button type="button" (click)="close()">Cancel</button>
     <button mat-raised-button color="primary" type="button" (click)="save()">
-      {{ isEditMode ? 'Update' : 'Save' }}
+      Save
     </button>
   </mat-dialog-actions>
 

@@ -1,18 +1,53 @@
-<h2>Login</h2>
-<form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
-    <div>
-        <label>Username</label>
-        <input  data-testid="username-input" type="text" formControlName="username" placeholder="Enter username" /> 
+<div class="login-wrapper">
+  <div class="login-container">
+
+    <!-- Left Animated Section -->
+    <div class="login-image">
+      <img src="https://cdn-icons-png.flaticon.com/512/295/295128.png" alt="login image">
+      <h2>Welcome Back 👋</h2>
+      <p>Sign in to access your dashboard</p>
     </div>
-    <div>
-        <label>Password</label>
-        <input  data-testid="password-input" type="password" formControlName="password" placeholder="Enter Password" /> 
+
+    <!-- Right Form Section -->
+    <div class="login-form">
+      <h2>Login</h2>
+
+      <form [formGroup]="loginForm" (ngSubmit)="handleSubmit()">
+
+        <div class="input-group">
+          <input data-testid="username-input"
+                 type="text"
+                 formControlName="username"
+                 placeholder="Enter Username"
+                 required />
+        </div>
+
+        <div class="input-group">
+          <input data-testid="password-input"
+                 type="password"
+                 formControlName="password"
+                 placeholder="Enter Password"
+                 required />
+        </div>
+
+        <button data-testid="login-button"
+                type="submit"
+                [disabled]="loginForm.invalid">
+          Sign In
+        </button>
+
+        <p data-testid="error-message" class="error"
+           *ngIf="errorMessage">
+          {{errorMessage}}
+        </p>
+
+        <div class="register-link">
+          No registered account?
+          <a routerLink="/register">Register</a>
+        </div>
+
+      </form>
     </div>
-    <div>
-        <button data-testid="login-button" [disabled]="loginForm.invalid">Login</button>
-        <p  data-testid="error-message" style="color: red;">{{errorMessage}}</p>
-    </div>
-    <div>
-        No registered account? <a routerLink="/register">Register</a>
-    </div>
-</form>
+
+  </div>
+</div>

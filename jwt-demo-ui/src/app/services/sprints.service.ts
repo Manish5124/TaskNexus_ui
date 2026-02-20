@@ -11,4 +11,7 @@ export class SprintsService {
   getAllSprints(){
     return this.http.get<any>('http://localhost:8080/api/admin/getAllSprints')
   }
+  createSprint(data:any){
+    return this.http.post('http://localhost:8080/api/admin/createSprint',data, { responseType: 'text' })
+  }
 }
