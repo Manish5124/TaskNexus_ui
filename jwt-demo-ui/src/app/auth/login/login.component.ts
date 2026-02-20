@@ -32,8 +32,12 @@ export class LoginComponent {
         next: res => {
         if(res.role == "ADMIN"){
           this.router.navigate(['/admin'])
-        }else {
-          this.router.navigate(['/user'])
+        }
+        else if(res.role == "PROJECT_MANAGER"){
+          this.router.navigate(['/sprint-lists'])
+        }
+        else {
+          this.router.navigate(['/login'])
         }
       },
       error: () => {

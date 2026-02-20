@@ -64,7 +64,7 @@ export class AdminComponent implements OnInit {
         this.dataSource = new MatTableDataSource(res)
         this.dataSource.paginator = this.paginator
         this.dataSource.sort = this.sort
-        console.log(res)
+        console.log("list of project =>", res)
       },
       error :(res) =>{
         console.log("error Response"+res)

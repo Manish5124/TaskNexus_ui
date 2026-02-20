@@ -9,9 +9,9 @@ export class SprintsService {
   constructor(private http: HttpClient) { }
 
   getAllSprints(){
-    return this.http.get<any>('http://localhost:8080/api/admin/getAllSprints')
+    return this.http.get<any>('http://localhost:8080/api/sprint/getAllSprints')
   }
   createSprint(data:any){
-    return this.http.post('http://localhost:8080/api/admin/createSprint',data, { responseType: 'text' })
+    return this.http.post('http://localhost:8080/api/sprint/createSprint',data, { responseType: 'text' })
   }
 }
