@@ -13,7 +13,6 @@ import { LoginRequest } from 'src/app/models/auth';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  [x: string]: any;
   loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
@@ -29,7 +28,6 @@ export class LoginComponent {
         username: this.loginForm.value.username!,
         password: this.loginForm.value.password!
       }
-      console.log("loginRequest =>", loginRequest)
       localStorage.setItem("username", loginRequest.username)
       this.authService.login(loginRequest).subscribe({
         next: res => {       
