@@ -75,9 +75,7 @@
   color: #000000; /* text turns black */
 }
 
-.menu-button:hover mat-icon {
-  /* color: #000000;  */
-}
+
 
 /* Active Route Highlight */
 .active {
