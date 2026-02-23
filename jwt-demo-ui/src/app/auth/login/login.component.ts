@@ -28,17 +28,10 @@ export class LoginComponent {
         username: this.loginForm.value.username!,
         password: this.loginForm.value.password!
       }
-<<<<<<< HEAD
 
       this.authService.login(loginRequest).subscribe({
         next: res => {
         localStorage.setItem("username", loginRequest.username)
-=======
-     
-      this.authService.login(loginRequest).subscribe({
-        next: res => {    
-        localStorage.setItem("username", loginRequest.username)   
->>>>>>> fe91fcfc2a017645589c6dde8e2f10e8a8df3261
         if(res.role == "ADMIN"){
           this.router.navigate(['/admin'])
         }
