@@ -4,6 +4,9 @@ import { Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
+import { logout } from 'src/app/store/Auth/auth.actions';
+import { Store } from '@ngrx/store';
+
 @Component({
   selector: 'app-side-bar',
   standalone: true,
@@ -13,18 +16,20 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class SideBarComponent {
 
-   constructor(private router: Router) {}
-  
-    logout() {
+ constructor(
+    private store: Store,
+    private router: Router
+  ) {}
+
+  logout() {
+
       localStorage.removeItem("username")
-      this.router.navigate(['/login']);
-    }
-    // message =''
-    // constructor(private helloService: HelloService){
-    //    helloService.helloAdmin().subscribe((res)=> {
-    //       this.message = res.message
-    //   })
-    // }
-    
+    /* Dispatch logout action */
+    this.store.dispatch(logout());
+
+    /* Navigate to login */
+    this.router.navigate(['/login']);
+  }
+
 
 }

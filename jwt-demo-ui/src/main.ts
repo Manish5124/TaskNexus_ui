@@ -8,6 +8,10 @@ import { AuthService } from "./app/services/auth.service";
 import { APP_INITIALIZER, importProvidersFrom } from "@angular/core";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatPaginator } from '@angular/material/paginator';
+import { provideStore } from "@ngrx/store";
+import { provideEffects } from "@ngrx/effects";
+import { authReducer } from "./app/store/Auth/auth.reducer";
+import { AuthEffects } from './app/store/Auth/auth.effects';
 
 function initializeAuth(auth: AuthService){
   return () => auth.initAuth()
@@ -22,7 +26,9 @@ bootstrapApplication(AppComponent, {providers: [
         deps: [AuthService],
         multi: true
     },
-    importProvidersFrom(BrowserAnimationsModule, BrowserAnimationsModule, BrowserAnimationsModule),
-    importProvidersFrom(MatPaginator)
+    importProvidersFrom(BrowserAnimationsModule, BrowserAnimationsModule),
+    importProvidersFrom(MatPaginator),
+    provideStore({ auth: authReducer }),
+    provideEffects([AuthEffects])
 
 ]})

@@ -1,0 +1,83 @@
+<h2 mat-dialog-title>
+  {{ isEditMode ? "Update Task" : "Create Task" }}
+</h2>
+
+<form [formGroup]="taskForm" (ngSubmit)="submit()" mat-dialog-content>
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea matInput formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Project</mat-label>
+    <mat-select formControlName="projectId">
+      <mat-option *ngFor="let project of projects" [value]="project.id">
+        {{ project.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Sprint</mat-label>
+    <mat-select formControlName="sprintId">
+      <mat-option *ngFor="let sprint of filteredSprints" [value]="sprint.id">
+        {{ sprint.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Assign User</mat-label>
+    <mat-select formControlName="userId">
+      <mat-option *ngFor="let user of users" [value]="user.id">
+        {{ user.username }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status">
+      <mat-option value="TODO">TODO</mat-option>
+      <mat-option value="IN_PROGRESS">IN_PROGRESS</mat-option>
+      <mat-option value="DONE">DONE</mat-option>
+      <mat-option value="BLOCKED">BLOCKED</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Priority</mat-label>
+    <mat-select formControlName="priority">
+      <mat-option value="LOW">LOW</mat-option>
+      <mat-option value="MEDIUM">MEDIUM</mat-option>
+      <mat-option value="HIGH">HIGH</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Start Date</mat-label>
+    <input matInput type="date" formControlName="startDate" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline" class="full-width">
+    <mat-label>Due Date</mat-label>
+    <input matInput type="date" formControlName="dueDate" />
+  </mat-form-field>
+
+  <div mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="close()">Cancel</button>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="taskForm.invalid"
+    >
+      {{ isEditMode ? "Update" : "Create" }}
+    </button>
+  </div>
+</form>

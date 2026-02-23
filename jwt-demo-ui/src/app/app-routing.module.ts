@@ -10,6 +10,7 @@ import { ProjectManagerComponent } from './dashboard/project-manager/project-man
 import { CreateProjectComponent } from './projects/create-project/create-project.component';
 import { SprintListsComponent } from './sprints/sprint-lists/sprint-lists.component';
 import { AssignTasksComponent } from './tasks/assign-tasks/assign-tasks.component';
+import { TaskListComponent } from './tasks/task-list/task-list.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -38,7 +39,18 @@ export const routes: Routes = [
     data: { roles: ['PROJECT_MANAGER'] },
     component: SprintListsComponent,
   },
-   { path: '**', component: LoginComponent },
-
-
+  {
+    path: 'task',
+    canActivate: [AuthGuard, RoleGuard],
+    data: { roles: ['TEAM_MEMBER'] },
+    component: TaskListComponent,
+  },
+  {
+    path: 'create-task',
+    loadComponent: () =>
+      import('./tasks/create-task/create-task.component').then(
+        (m) => m.CreateTaskComponent,
+      ),
+  },
+  { path: '**', component: LoginComponent },
 ];

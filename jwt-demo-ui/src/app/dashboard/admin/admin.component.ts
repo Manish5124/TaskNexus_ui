@@ -7,7 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { SideBarComponent } from 'src/app/shared/ui/side-bar/side-bar.component';
+
 import { MatSort } from '@angular/material/sort';
 import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { NavBarComponent } from 'src/app/shared/ui/nav-bar/nav-bar.component';
@@ -22,12 +22,27 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { SideBarComponent } from 'src/app/shared/ui/side-bar/side-bar.component';
 
 @Component({
   selector: 'app-admin',
   standalone: true,
-  imports: [CommonModule,MatButtonModule,MatIconModule,RouterModule,SideBarComponent,MatTableModule,MatPaginatorModule,NavBarComponent,MatDialogModule,MatSnackBarModule,
-    ReactiveFormsModule,FormsModule,MatInputModule,MatFormFieldModule, MatExpansionModule
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    RouterModule,
+    MatTableModule,
+    MatPaginatorModule,
+    NavBarComponent,
+    MatDialogModule,
+    MatSnackBarModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatExpansionModule,
+    SideBarComponent,
   ],
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.css'],
