@@ -14,4 +14,6 @@ import { RouterModule } from '@angular/router';
 })
 export class NavBarComponent {
 
+  username = localStorage.getItem("username")
+
 }

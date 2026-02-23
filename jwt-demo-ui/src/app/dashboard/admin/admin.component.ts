@@ -30,10 +30,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
     ReactiveFormsModule,FormsModule,MatInputModule,MatFormFieldModule, MatExpansionModule
   ],
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
 })
-
-
 export class AdminComponent implements OnInit {
   searchId!: number;
   displayedColumns: string[] = [

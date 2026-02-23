@@ -16,6 +16,7 @@ export class SideBarComponent {
    constructor(private router: Router) {}
   
     logout() {
+      localStorage.removeItem("username")
       this.router.navigate(['/login']);
     }
     // message =''

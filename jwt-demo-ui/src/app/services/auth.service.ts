@@ -48,6 +48,7 @@ export class AuthService {
   }
 
   logout() {
+    localStorage.removeItem("username")
     return this.http.post(this.authApiUrl+"/logout", {}, {withCredentials: true})
                         .pipe(
                           tap(()=> {

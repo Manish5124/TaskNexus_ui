@@ -1,16 +1,19 @@
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProjectsService {
 
+  private baseUrl = environment.apiBaseUrl + '/api/project'
+
   constructor(private http: HttpClient) { }
 
   getAllProjects(){
-    return this.http.get<any>('http://localhost:8080/api/project')
+    return this.http.get<any>(this.baseUrl)
   }
 
   deleteProjectById(id:number){
