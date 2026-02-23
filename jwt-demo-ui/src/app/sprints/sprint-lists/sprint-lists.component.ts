@@ -15,6 +15,10 @@ import { SprintsService } from 'src/app/services/sprints.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { MatFormFieldModule } from "@angular/material/form-field";
+import { MatInputModule } from '@angular/material/input';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-sprint-lists',
@@ -28,15 +32,19 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatDialogModule,
     MatCardModule,
-    MatSnackBarModule
-  ],
+    MatSnackBarModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    FormsModule
+],
   providers: [DatePipe],
   templateUrl: './sprint-lists.component.html',
   styleUrls: ['./sprint-lists.component.css']
 })
 export class SprintListsComponent {
+  sprintId!:number
   displayedColumns: string[] = [
-    'name','createdDate', 'startDate', 'endDate', 'actions'
+    'id','name','startDate', 'endDate', 'actions'
   ];
 
   dataSource = new MatTableDataSource<Sprint>([]);
@@ -56,20 +64,16 @@ export class SprintListsComponent {
   }
 
   getAllSprints() {
-    this.sprintService.getAllSprints().subscribe({
-      next: (res: any[]) => {
-        this.dataSource.data = res.map(s => ({
-          ...s,
-          createdDate: this.datePipe.transform(s.createdDate, 'yyyy-MM-dd')
-        }));
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-        console.log("Sprint Response ===>", res);
-      },
-      error: (err) => {
-        console.error("Error fetching sprints:", err);
-      }
-    });
+
+   this.sprintService.getAllSprints().subscribe({
+    next: (res: any[]) => {
+      console.log("API Response:", res);
+
+      this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    }
+  });
   }
 
   ngAfterViewInit() {
@@ -83,71 +87,81 @@ export class SprintListsComponent {
     return Math.max(...data.map(d => d.id)) + 1;
   }
 
+
+  searchProjectById(): void {
+  if (!this.sprintId) {
+     this.getAllSprints()
+    return;
+  }
+
+  this.sprintService.getSprintById(this.sprintId).subscribe({
+    next: (sprint: any) => {
+      this.dataSource.data = [sprint];
+    },
+    error: (err) => {
+      console.error("Error fetching project:", err);
+      this.snackbar.open(`Sprint  with ID ${this.sprintId} not found`, 'Close', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+      this.dataSource.data = [];
+    }
+  });
+}
   createSprint() {
     const dialogRef = this.dialog.open(CreateSprintComponent, { width: '500px' });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (!result) return;
-
-      this.sprintService.createSprint(result).subscribe({
-        next: () => {
-          console.log('Sprint saved on backend');
-
-          // Refresh table from backend
-          this.getAllSprints();
-
-          this.snackbar.open('Sprint Created Successfully!', 'Close', {
-            duration: 2000,
-            verticalPosition: 'top'
-          });
-        },
-        error: (err) => {
-          console.error('Error creating sprint:', err);
-          this.snackbar.open('Failed to create sprint', 'Close', {
-            duration: 2000,
-            verticalPosition: 'top'
-          });
-        }
-      });
+   dialogRef.afterClosed().subscribe(result => {
+  if (result) {
+    this.getAllSprints();
+    this.snackbar.open('Sprint Created Successfully!', 'Close', {
+      duration: 2000,
+      verticalPosition: 'top'
     });
+  }
+});
   }
 
   editSprint(sprint: Sprint) {
     const dialogRef = this.dialog.open(CreateSprintComponent, {
-      width: '500px',
-      data: sprint
-    });
+    width: '500px',
+    data: sprint
+  });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const today = new Date();
-        const endDate = new Date(result.endDate);
-        if (endDate <= today) {
-          result.status = 'Completed';
-        }
-
-        const updatedData = this.dataSource.data.map(s =>
-          s.id === sprint.id ? { ...s, ...result } : s
-        );
-
-        this.dataSource.data = updatedData;
-        localStorage.setItem('sprints', JSON.stringify(updatedData));
-      }
-    });
+  dialogRef.afterClosed().subscribe(result => {
+    if (result) {
+      this.getAllSprints();
+      this.snackbar.open('Sprint Updated Successfully!', 'Close', {
+        duration: 2000,
+        verticalPosition: 'top'
+      });
+    }
+  });
   }
 
-  deleteSprint(id: number) {
-    const updatedData = this.dataSource.data.filter(s => s.id !== id);
-    this.dataSource.data = updatedData;
-    localStorage.setItem('sprints', JSON.stringify(updatedData));
-  }
+
+  deleteSprint(sprint: Sprint) {
+     this.sprintService.deleteSprintById(sprint.id).subscribe({
+    next: (res) => {
+      console.log("Project ID deleted: " + sprint.id);
+      this.dataSource.data = this.dataSource.data.filter(s => s.id !== sprint.id);
+      this.snackbar.open("Project Deleted Successfully!", 'Close', {
+        duration: 3000,
+        verticalPosition: 'top'
+      });
+    },
+    error: (err) => {
+      console.error("Error deleting project:", err);
+    }
+  });
+}
 
   viewSprint(id: number) {
     console.log("View Sprint");
   }
 
   assignTask() {
-  this.router.navigate(['/assign-tasks']);  // adjust route if needed
+  this.router.navigate(['/assign-tasks']);
 }
 }
 
@@ -158,5 +172,4 @@ export interface Sprint {
   startDate: string;
   endDate: string;
   createdDate?: string;
-  // projectName:string
 }

@@ -1,0 +1,61 @@
+<app-nav-bar></app-nav-bar>
+<div class="main-layout">
+
+
+  <!-- Sidebar -->
+
+  <app-side-bar></app-side-bar>
+
+
+  <!-- Dashboard Content -->
+  <div class="dashboard-container">
+     <h2 class ="section-title">Dashboard Overview</h2>
+
+
+
+    <div class="summary-cards">
+      <mat-card class="summary-card" *ngFor="let card of summaryCards">
+        <mat-icon class="card-icon">{{ card.icon }}</mat-icon>
+        <div class="card-info">
+          <h3>{{ card.title }}</h3>
+          <h2>{{ card.value }}</h2>
+        </div>
+      </mat-card>
+    </div>
+
+  <!-- ========================= -->
+  <!-- Bottom Section -->
+  <!-- ========================= -->
+  <div class="bottom-section">
+
+    <!-- Active Projects -->
+    <div class="projects-section">
+      <h2 class="section-title">Active Projects</h2>
+
+      <div class="project-cards">
+        <mat-card class="project-card" *ngFor="let project of projects">
+          <h3>{{ project.name }}</h3>
+          <p>Due: {{ project.dueDate }}</p>
+          <mat-progress-bar mode="determinate" [value]="project.progress"></mat-progress-bar>
+          <span class="progress-label">{{ project.progress }}% Completed</span>
+        </mat-card>
+      </div>
+    </div>
+
+    <!-- Tasks Per User -->
+    <div class="users-section">
+      <h2 class="section-title">Tasks Per User</h2>
+
+      <mat-card class="user-card" *ngFor="let user of userTasks">
+        <div class="user-row">
+          <span>{{ user.name }}</span>
+          <span>{{ user.tasks }} Tasks</span>
+        </div>
+        <mat-progress-bar mode="determinate" [value]="user.progress"></mat-progress-bar>
+      </mat-card>
+
+    </div>
+
+  </div>
+
+</div>

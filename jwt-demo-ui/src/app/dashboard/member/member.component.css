@@ -15,7 +15,7 @@
   flex: 1;
   padding: 30px;
   min-height: 100vh;
-  background: #eceaf1;   /* Same comfortable background */
+  background: #E8EDF5;
 }
 
 /* ============================= */
@@ -30,7 +30,7 @@
 }
 
 .header h2 {
-  color: #2d1f3d;
+  color: #283593;
   font-weight: 600;
 }
 
@@ -39,7 +39,7 @@
 /* ============================= */
 
 .add-btn {
-  background: linear-gradient(135deg, #513162, #6f3d82);
+  background: #283593;
   border: none;
   border-radius: 12px;
   padding: 10px 22px;
@@ -101,7 +101,7 @@ tr.mat-row:hover td {
 /* ============================= */
 
 .edit-btn mat-icon {
-  color: #513162;
+  color: #283593;
 }
 
 .delete-btn mat-icon {

@@ -1,4 +1,4 @@
-/* Navbar */
+
 .navbar {
   position: fixed;
   top: 0;
@@ -6,7 +6,7 @@
   right: 0;
   z-index: 1000;
   height: 64px;
-  background-color: #eceaf1 !important; /* light comfortable color */
+  background-color: #eceaf1 !important;
   color: #333;
   display: flex;
   align-items: center;
@@ -25,7 +25,7 @@
   flex: 1;
   padding: 15px 30px 30px 30px;
   margin-top: 0;
-  background: #f5f4f8; /* light comfortable background */
+   background: #E8EDF5;
   display: flex;
   flex-direction: column;
   min-height: calc(100vh - 64px);
@@ -41,27 +41,28 @@
 }
 
 .header h2 {
-  color: #513162;
+  color: #283593;
   font-weight: 600;
 }
 
-/* Add Manager Button (gradient & hover like Project/Member page) */
-.mat-raised-button {
-  background: linear-gradient(135deg, #513162, #6f3d82);
+
+
+
+.add-btn {
+  /* background: #283593; */
   border: none;
   border-radius: 12px;
   padding: 10px 22px;
   color: white;
   font-weight: 600;
-  text-transform: none;
-  cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.2s ease;
+  background-color: #283593;
 }
 
-.mat-raised-button:hover {
+/* .mat-raised-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(81, 49, 98, 0.4);
-}
+} */
 
 /* Table container (blur + rounded) */
 .table-container {
@@ -105,7 +106,7 @@ tr.mat-row:hover td {
   transition: 0.3s ease;
 }
 
-/* Icon buttons (delete) */
+
 button.mat-icon-button mat-icon {
   font-size: 20px;
 }
@@ -117,12 +118,11 @@ button.mat-icon-button:hover mat-icon {
 
 /* Paginator styling (matching table) */
 mat-paginator {
-  margin-top: 16px;
-  background: rgba(255, 255, 255, 0.08);
-  border-radius: 14px;
+ margin-top: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   padding: 8px 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  color: #513162;
 }
 
 .mat-paginator-range-label,
@@ -140,7 +140,7 @@ mat-paginator {
   from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
-.action-btn:hover {
+.add-btn:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(81, 49, 98, 0.4);
+  box-shadow: rgb(63, 63, 215);
 }

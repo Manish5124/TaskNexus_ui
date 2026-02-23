@@ -1,25 +1,52 @@
-<h2>Register</h2>
-<form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
-    <div>
+<div class="register-wrapper">
+
+  <div class="register-card">
+
+    <div class="register-header">
+      <span class="material-icons register-icon">person_add</span>
+      <h2>Create Account</h2>
+      <p>Register to get started</p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="handleSubmit()">
+
+      <div class="input-group">
         <label>Username</label>
-        <input type="text" formControlName="username" placeholder="Enter username" /> 
-    </div>
-    <div>
+        <input type="text"
+               formControlName="username"
+               placeholder="Enter username" />
+      </div>
+
+      <div class="input-group">
         <label>Password</label>
-        <input type="password" formControlName="password" placeholder="Enter Password" /> 
-    </div>
-    <div>
+        <input type="password"
+               formControlName="password"
+               placeholder="Enter password" />
+      </div>
+
+      <div class="input-group">
         <label>Role</label>
         <select formControlName="role">
-            <option value="USER">USER</option>
-            <option value="ADMIN">ADMIN</option>
+          <option value="USER">USER</option>
+          <option value="ADMIN">ADMIN</option>
         </select>
-    </div>
-    <div>
-        <button [disabled]="registerForm.invalid">Register</button>
-        <p style="color: red;">{{errorMessage}}</p>
-    </div>
-    <div>
-        Already registered? <a routerLink="/login">Login</a>
-    </div>
-</form>
+      </div>
+
+      <button type="submit" [disabled]="registerForm.invalid">
+        Register
+      </button>
+
+      <p class="error" *ngIf="errorMessage">
+        {{errorMessage}}
+      </p>
+
+      <div class="login-link">
+        Already registered?
+        <a routerLink="/login">Login</a>
+      </div>
+
+    </form>
+
+  </div>
+
+</div>

@@ -1,7 +1,7 @@
 /* Dialog container */
 .mat-dialog-container {
   border-radius: 16px;
-  background: #f5f4f8; /* light comfortable background */
+  background: #f5f4f8;
   padding: 24px;
   max-width: 500px;
   color: #1e293b;
@@ -9,28 +9,28 @@
   box-shadow: 0 10px 30px rgba(0,0,0,0.2);
 }
 
-/* Dialog title */
+
 .mat-dialog-title {
   font-size: 20px;
   font-weight: 600;
-  color: #513162;
+  color: #283593;
   margin-bottom: 16px;
   text-align: center;
+
 }
 
-/* Dialog content */
 .dialog-content {
   display: flex;
   flex-direction: column;
   gap: 14px;
 }
 
-/* Individual detail row */
+
 .detail-row {
   display: flex;
   justify-content: space-between;
   padding: 12px 16px;
-  background-color: rgba(81, 49, 98, 0.05); /* subtle purple tint */
+  background-color: #E8EDF5;;
   border-radius: 8px;
   transition: 0.2s ease;
 }
@@ -43,7 +43,7 @@
   color: #513162;
 }
 
-/* Dialog actions container */
+
 .mat-dialog-actions {
   margin-top: 20px;
   display: flex;
@@ -51,9 +51,9 @@
   gap: 12px;
 }
 
-/* Gradient action button (like Project/Member buttons) */
+
 .action-btn {
-  background: linear-gradient(135deg, #513162, #6f3d82);
+  background: #283593;
   border: none;
   border-radius: 12px;
   padding: 10px 22px;
@@ -67,4 +67,46 @@
 .action-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 8px 20px rgba(81, 49, 98, 0.4);
+}
+/* =============================
+   Force Dialog Text Colors
+   ============================= */
+
+/* Normal text inside dialog */
+.mat-dialog-container,
+.mat-dialog-container p,
+.mat-dialog-container span,
+.mat-dialog-container div {
+  color: #1e293b !important;
+}
+
+/* Form field label */
+.mat-form-field-label {
+  color: #283593 !important;
+}
+
+/* Input text */
+.mat-input-element {
+  color: #1e293b !important;
+}
+
+/* Placeholder text */
+.mat-input-element::placeholder {
+  color: #64748B !important;
+  opacity: 1;
+}
+
+/* Select value text */
+.mat-select-value {
+  color: #1e293b !important;
+}
+
+/* Form field outline */
+.mat-form-field-appearance-outline .mat-form-field-outline {
+  color: #283593 !important;
+}
+
+/* Error message */
+.mat-error {
+  color: #DC2626 !important;
 }

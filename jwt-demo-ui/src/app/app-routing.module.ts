@@ -10,6 +10,7 @@ import { ProjectManagerComponent } from "./dashboard/project-manager/project-man
 import { CreateProjectComponent } from "./projects/create-project/create-project.component";
 import { SprintListsComponent } from "./sprints/sprint-lists/sprint-lists.component";
 import { AssignTasksComponent } from "./tasks/assign-tasks/assign-tasks.component";
+import { DashboredPageComponent } from "./dashboard/dashbored-page/dashbored-page.component";
 
 export const routes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
@@ -22,6 +23,7 @@ export const routes: Routes = [
            { path: 'create-project', component: CreateProjectComponent },
              { path: 'sprint-lists', component: SprintListsComponent },
              { path: 'assign-tasks', component: AssignTasksComponent },
+             { path: 'dashbored', component: DashboredPageComponent },
   // {path: 'user',
   //   canActivate:[AuthGuard, RoleGuard],
   //   data: {roles: ['USER', 'ADMIN'] },

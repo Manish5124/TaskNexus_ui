@@ -13,7 +13,7 @@ import { LoginRequest } from 'src/app/models/auth';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  loginForm = new FormGroup({
+ loginForm = new FormGroup({
     username: new FormControl('', [Validators.required]),
     password: new FormControl('', [Validators.required])
   })
@@ -28,12 +28,18 @@ export class LoginComponent {
         username: this.loginForm.value.username!,
         password: this.loginForm.value.password!
       }
+
       this.authService.login(loginRequest).subscribe({
         next: res => {
+        localStorage.setItem("username", loginRequest.username)
         if(res.role == "ADMIN"){
           this.router.navigate(['/admin'])
-        }else {
-          this.router.navigate(['/user'])
+        }
+        else if(res.role == "PROJECT_MANAGER"){
+          this.router.navigate(['/sprint-lists'])
+        }
+        else {
+          this.router.navigate(['/login'])
         }
       },
       error: () => {

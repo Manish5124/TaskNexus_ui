@@ -1,27 +1,131 @@
-/* ============================= */
-/* Layout */
-/* ============================= */
-
+/* =============================
+   Layout
+   ============================= */
 .main-layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* ============================= */
-/* Content Area – Soft Comfortable Background */
-/* ============================= */
+/* =============================
+   Sidebar
+   ============================= */
+.navbar {
+  width: 250px;
+  height: 100vh;
+  background-color: #F3F4F6; /* light silver / soft white */
+  display: flex;
+  flex-direction: column;
+  padding: 20px 15px;
+}
 
+.top {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.top mat-icon {
+  font-size: 32px;
+  color: #0F172A; /* black icon */
+}
+
+.menu-head {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #0F172A; /* black text */
+  margin-bottom: 10px;
+  padding-left: 10px;
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-button {
+  display: flex;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 15px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  background-color: transparent;
+  color: #0F172A !important; /* black text */
+  transition: all 0.3s ease;
+  justify-content: flex-start;
+}
+
+.menu-button mat-icon {
+  font-size: 20px;
+  color: #0F172A;
+  transition: all 0.3s ease;
+}
+
+.menu-button:hover {
+  background-color: rgba(40, 53, 147, 0.15); /* light indigo hover overlay */
+  color: #283593 !important;
+}
+
+.menu-button:hover mat-icon {
+  color: #283593; /* icon hover color */
+}
+
+.active {
+  background-color: rgba(40, 53, 147, 0.25) !important;
+  font-weight: 600;
+  color: #283593 !important;
+}
+
+.menu-button:last-child {
+  margin-top: 20px;
+}
+
+/* =============================
+   Navbar
+   ============================= */
+.navbar-top {
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #283593; /* deep indigo */
+  color: #FFFFFF;
+  height: 60px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+.menu-icon {
+  cursor: pointer;
+  margin-right: 16px;
+  color: #FFFFFF;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+/* =============================
+   Content Area
+   ============================= */
 .content {
   flex: 1;
   padding: 30px;
   min-height: 100vh;
-  background: #eceaf1;   /* Soft eye-friendly background */
+  background: #E8EDF5; /* soft ocean/light background */
 }
 
-/* ============================= */
-/* Header */
-/* ============================= */
-
+/* =============================
+   Header
+   ============================= */
 .header {
   display: flex;
   justify-content: space-between;
@@ -30,147 +134,201 @@
 }
 
 .header h2 {
-  color: #2d1f3d;
+  color: #283593; /* matches navbar */
   font-weight: 600;
 }
 
-/* Keep header actions aligned properly */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 12px;
 }
 
-/* ============================= */
-/* Search Field (Clean + Fixed) */
-/* ============================= */
+/* =============================
+   Search Field
+   ============================= */
+/* Search Field Container */
 
-.search-field {
-  width: 200px;
+
+.search-btn{
+    background: white;
+  border: none;
+  border-radius: 12px;
+  padding: 10px 22px;
+  color: white;
+  font-weight: 600;
+  transition: 0.2s ease
+
 }
 
-/* Remove weird line issue */
-.mat-form-field-appearance-outline .mat-form-field-outline {
-  color: rgba(0, 0, 0, 0.2);
-}
 
-.search-field input {
-  color: #333;
-}
 
-.search-field input::placeholder {
-  color: #888;
-}
-
-/* ============================= */
-/* Buttons (Your Original Theme Restored) */
-/* ============================= */
-
-.action-btn {
+/* =============================
+   Buttons (Navbar Color Theme)
+   ============================= */
+.action-btn,
+.btn-primary,
+.btn-success,
+.btn-warning,
+.btn-info,
+.btn-danger {
   border-radius: 12px;
   padding: 10px 22px;
   font-weight: 600;
   cursor: pointer;
   transition: 0.2s ease;
-  color: white;
   border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Normal state = same as navbar */
+  background-color: #283593;
+  color: #FFFFFF !important; /* text always white */
 }
 
-/* SAME theme as before */
-.search-btn {
-  background: linear-gradient(135deg, #513162, #6f3d82);
+/* Force Angular Material button text to white */
+.action-btn span,
+.action-btn .mat-button-wrapper {
+  color: #FFFFFF !important;
 }
 
-.create-btn {
-  background: linear-gradient(135deg, #6f3d82, #9c5db2);
-}
-
-.action-btn:hover {
+/* Hover Effect */
+.action-btn:hover,
+.btn-primary:hover,
+.btn-success:hover,
+.btn-warning:hover,
+.btn-info:hover,
+.btn-danger:hover {
+  background-color: #1f2d7a;
+  color: #FFFFFF !important;
   transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(81, 49, 98, 0.3);
+  box-shadow: 0 6px 16px rgba(40, 53, 147, 0.25);
 }
 
-/* ============================= */
-/* Table Container */
-/* ============================= */
-
+/* =============================
+   Table Container
+   ============================= */
 .table-container {
   border-radius: 16px;
   overflow: hidden;
-  background: white;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+  background: #F3F4F6;
+  box-shadow: 0 6px 20px rgba(40, 53, 147, 0.08);
 }
 
-/* ============================= */
-/* Table */
-/* ============================= */
-
+/* =============================
+   Table
+   ============================= */
 table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
 }
 
-/* Header Row */
 th.mat-header-cell {
-  background: #513162;
+  background: #283593;
   color: white;
   font-weight: 600;
   padding: 14px 16px;
 }
 
-/* Body Cells */
 td.mat-cell {
-  background: #ffffff;
-  border-bottom: 1px solid #eee;
+  background: #F3F4F6; /* soft silver to match sidebar */
+  border-bottom: 1px solid #E6EEFF;
   padding: 12px 16px;
-  color: #444;
+  color: #334155;
 }
 
-/* Hover */
 tr.mat-row:hover td {
-  background: #f5f3f9;
+  background: rgba(40, 53, 147, 0.08); /* light indigo hover */
 }
 
-/* ============================= */
-/* Status */
-/* ============================= */
-
+/* =============================
+   Status Indicators
+   ============================= */
 .active-status {
-  color: #2ecc71;
+  color: #16A34A;
   font-weight: 600;
 }
 
 .inactive-status {
-  color: #e74c3c;
+  color: #DC2626;
   font-weight: 600;
 }
 
-/* ============================= */
-/* Paginator */
-/* ============================= */
-
+/* =============================
+   Paginator
+   ============================= */
 mat-paginator {
   margin-top: 20px;
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 4px 12px rgba(40, 53, 147, 0.08);
   padding: 8px 12px;
 }
 
-/* Remove heavy shadow */
 .mat-elevation-z8 {
   box-shadow: none;
 }
 
-/* ============================= */
-/* Responsive */
-/* ============================= */
-
+/* =============================
+   Responsive
+   ============================= */
 @media screen and (max-width: 900px) {
   .header {
     flex-direction: column;
     align-items: flex-start;
     gap: 12px;
   }
+}
+/* =============================
+   Buttons (Navbar Color Theme)
+   ============================= */
+.action-btn,
+.btn-primary,
+.btn-success,
+.btn-warning,
+.btn-info,
+.btn-danger {
+  border-radius: 12px;
+  padding: 10px 22px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: #283593 !important; /* navbar color */
+  color: #FFFFFF !important;            /* white text */
+}
+
+/* Force Angular Material button text to white */
+.action-btn span,
+.action-btn .mat-button-wrapper,
+.btn-primary span,
+.btn-primary .mat-button-wrapper,
+.btn-success span,
+.btn-success .mat-button-wrapper,
+.btn-warning span,
+.btn-warning .mat-button-wrapper,
+.btn-info span,
+.btn-info .mat-button-wrapper,
+.btn-danger span,
+.btn-danger .mat-button-wrapper {
+  color: #FFFFFF !important;
+}
+
+/* Hover Effect */
+.action-btn:hover,
+.btn-primary:hover,
+.btn-success:hover,
+.btn-warning:hover,
+.btn-info:hover,
+.btn-danger:hover {
+  background-color: #1f2d7a !important; /* slightly darker shade for hover */
+  color: #FFFFFF !important;            /* text stays white */
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(40, 53, 147, 0.25);
 }

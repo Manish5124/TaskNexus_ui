@@ -6,3 +6,7 @@
 mat-dialog-content {
   min-width: 400px;
 }
+.readonly-select .mat-select-trigger {
+  color: rgba(0, 0, 0, 0.6); 
+  pointer-events: none;
+}

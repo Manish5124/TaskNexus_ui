@@ -1,0 +1,135 @@
+/* =============================
+   Full Page Background
+============================= */
+.register-wrapper {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #E8EDF5;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* =============================
+   Register Card
+============================= */
+.register-card {
+  width: 420px;
+  padding: 40px;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(40, 53, 147, 0.1);
+}
+
+/* =============================
+   Header
+============================= */
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.register-icon {
+  font-size: 48px;
+  color: #283593;
+  margin-bottom: 10px;
+}
+
+.register-header h2 {
+  margin: 0;
+  color: #283593;
+}
+
+.register-header p {
+  font-size: 14px;
+  color: #64748B;
+  margin-top: 5px;
+}
+
+/* =============================
+   Inputs
+============================= */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 1px solid #E2E8F0;
+  font-size: 14px;
+  background: #F9FAFB;
+  transition: 0.2s ease;
+}
+
+.input-group input:focus,
+.input-group select:focus {
+  outline: none;
+  border-color: #283593;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(40, 53, 147, 0.15);
+}
+
+/* =============================
+   Button
+============================= */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #283593;
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background: #1f2d7a;
+  box-shadow: 0 6px 16px rgba(40, 53, 147, 0.25);
+}
+
+button:disabled {
+  background: #94A3B8;
+  cursor: not-allowed;
+}
+
+/* =============================
+   Error
+============================= */
+.error {
+  color: #DC2626;
+  font-size: 13px;
+  margin-top: 10px;
+}
+
+/* =============================
+   Login Link
+============================= */
+.login-link {
+  margin-top: 15px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.login-link a {
+  color: #283593;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

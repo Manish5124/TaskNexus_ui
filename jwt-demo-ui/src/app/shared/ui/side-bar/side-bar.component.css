@@ -1,13 +1,13 @@
-/* Sidebar Container */
+/* =============================
+   Sidebar Container
+   ============================= */
 .navbar {
   width: 250px;
   height: 100vh;
-  background-color: #513162;
-  /* background-color: #afacc0; */
+  background-color: #F3F4F6; /* light silver / soft white */
   display: flex;
   flex-direction: column;
   padding: 20px 15px;
-  /* box-shadow: 2px 0 10px rgba(247, 245, 245, 0.188); */
 }
 
 /* Top Icon */
@@ -20,7 +20,7 @@
 
 .top mat-icon {
   font-size: 32px;
-  color: #ffffff; /* white icon */
+  color: #0F172A; /* dark / black icon */
 }
 
 /* Menu Header */
@@ -28,7 +28,7 @@
   font-size: 14px;
   text-transform: uppercase;
   letter-spacing: 1px;
-  color: #ffffff; /* white text */
+  color: #0F172A; /* black text */
   margin-bottom: 10px;
   padding-left: 10px;
 }
@@ -42,51 +42,43 @@
 
 /* Buttons */
 .menu-button {
- display: flex;
-  /* align-items: center; */
+  display: flex;
   gap: 12px;
   width: 100%;
   padding: 10px 15px;
   border-radius: 8px;
-  text-transform: none;
   font-size: 14px;
   cursor: pointer;
   background-color: transparent;
-  color: #ffffff !important; /* white text by default */
+  color: #0F172A !important; /* black text */
   transition: all 0.3s ease;
   justify-content: flex-start;
-
-  /* text-transform: none; */
-  /* font-size: 14px;
-  cursor: pointer; */
 }
 
 /* Button Icons */
 .menu-button mat-icon {
   font-size: 20px;
-  color: #ffffff; /* white icon */
-  transition: color 0.3s ease;
+  color: #0F172A; /* black icons */
+  transition: all 0.3s ease;
 }
 
-/* Hover Effect */
+/* Hover Effect for buttons and icons */
 .menu-button:hover {
-  /* background-color: #9932cc;  */
-  background-color:#edeaef;
-  color: #000000; /* text turns black */
+  background-color: rgba(40, 53, 147, 0.15); /* light indigo overlay */
+  color: #283593 !important; /* text color matches navbar */
 }
 
 .menu-button:hover mat-icon {
-  /* color: #000000;  */
+  color: #283593; /* icon color matches navbar */
 }
 
 /* Active Route Highlight */
 .active {
-  /* background-color: #4b0082 !important;  */
-  color: #a898b0 !important;
+  background-color: rgba(40, 53, 147, 0.25) !important; /* slightly darker overlay */
   font-weight: 600;
+  color: #283593 !important;
 }
 
-/* Logout button spacing */
 .menu-button:last-child {
   margin-top: 20px;
 }

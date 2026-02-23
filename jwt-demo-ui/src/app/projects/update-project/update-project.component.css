@@ -1,68 +1,77 @@
-/* Dialog container */
+/* ============================= */
+/* Dialog Container */
+/* ============================= */
 ::ng-deep .mat-dialog-container {
-  width: 420px !important;
-  max-width: 95vw;
-  padding: 28px 24px !important;
+  width: 100% !important;         
+  max-width: 400px !important;
+  padding: 24px 20px !important;
   border-radius: 16px !important;
   background: linear-gradient(135deg, #f5f4f8, #e8e6f0) !important;
   box-shadow: 0 12px 30px rgba(0,0,0,0.2) !important;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
+  box-sizing: border-box;
 }
 
-/* Dialog title */
+/* ============================= */
+/* Dialog Title */
+/* ============================= */
 ::ng-deep .mat-dialog-title {
-  font-size: 20px !important;
+  font-size: 22px !important;
   font-weight: 700 !important;
-  color: #513162 !important;
-  margin-bottom: 20px !important;
+  color: #283593 !important;
+  margin-bottom: 18px !important;
   text-align: center;
 }
 
-/* Dialog content layout */
+/* ============================= */
+/* Dialog Content Layout */
+/* ============================= */
 ::ng-deep .dialog-content {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;                     /* smaller gap for compact layout */
 }
 
-/* Mat form field container */
+/* ============================= */
+/* Mat Form Field Styling */
+/* ============================= */
 ::ng-deep .mat-form-field {
-  width: 100% !important;
+  width: 100% !important;        /* full width inside container */
   border-radius: 12px !important;
   background: rgba(81,49,98,0.05) !important;
   padding: 4px 8px !important;
+  box-sizing: border-box;
 }
 
-/* Outline style */
 ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
   border-radius: 12px !important;
   border-color: rgba(81,49,98,0.3) !important;
 }
 
-/* Input element */
+/* Input Text Styling */
 ::ng-deep .mat-input-element {
-  color: #513162 !important;
+  color: #283593 !important;
   font-weight: 500 !important;
-  letter-spacing: 0.5px;
   padding: 10px 8px !important;
 }
 
-/* Placeholder text */
 ::ng-deep .mat-input-element::placeholder {
-  color: rgba(81,49,98,0.6) !important;
+  color: rgba(40,53,147,0.5) !important;
   font-style: italic;
   font-weight: 500;
 }
 
-/* Focused outline glow */
+/* Focused Outline Glow */
 ::ng-deep .mat-form-field.mat-focused .mat-form-field-outline {
-  border-color: #6f3d82 !important;
-  box-shadow: 0 0 8px rgba(156,93,178,0.3) !important;
+  border-color: #283593 !important;
+  box-shadow: 0 0 8px rgba(40,53,147,0.25) !important;
 }
 
-/* Dialog actions layout */
+/* ============================= */
+/* Dialog Actions Layout */
+/* ============================= */
 ::ng-deep .mat-dialog-actions {
   display: flex !important;
   justify-content: flex-end !important;
@@ -70,10 +79,12 @@
   margin-top: 16px !important;
 }
 
-/* Cancel button */
+/* ============================= */
+/* Cancel Button */
+/* ============================= */
 ::ng-deep button.cancel-btn {
   background: #ddd !important;
-  color: #513162 !important;
+  color: #283593 !important;
   font-weight: 600 !important;
   border-radius: 12px !important;
   padding: 8px 18px !important;
@@ -85,9 +96,11 @@
   background: #ccc !important;
 }
 
-/* Update button */
+/* ============================= */
+/* Update Button */
+/* ============================= */
 ::ng-deep button.update-btn {
-  background: linear-gradient(135deg, #513162, #6f3d82) !important;
+  background: #283593 !important;
   color: white !important;
   font-weight: 600 !important;
   text-transform: none !important;
@@ -98,5 +111,28 @@
 
 ::ng-deep button.update-btn:hover {
   transform: translateY(-2px) !important;
-  box-shadow: 0 8px 20px rgba(81, 49, 98, 0.4) !important;
+  box-shadow: 0 8px 20px rgba(40, 53, 147, 0.35) !important;
+}
+
+/* ============================= */
+/* Responsive Adjustments */
+/* ============================= */
+@media screen and (max-width: 550px) {
+  ::ng-deep .mat-dialog-container {
+    padding: 20px 16px !important;
+  }
+
+  ::ng-deep .mat-dialog-title {
+    font-size: 20px !important;
+  }
+
+  ::ng-deep .mat-form-field {
+    padding: 2px 6px !important;
+  }
+
+  ::ng-deep button.cancel-btn,
+  ::ng-deep button.update-btn {
+    padding: 6px 14px !important;
+    font-size: 14px !important;
+  }
 }

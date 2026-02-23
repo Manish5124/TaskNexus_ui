@@ -1,142 +1,43 @@
 /* ============================= */
-/* Layout */
+/* Layout & Content Area */
 /* ============================= */
-
 .main-layout {
   display: flex;
   min-height: 100vh;
 }
 
-/* ============================= */
-/* Content Area – Soft Comfortable Background */
-/* ============================= */
-
 .content {
   flex: 1;
   padding: 30px;
   min-height: 100vh;
-  background: #eceaf1;   /* Soft eye-friendly background */
+  background: #E8F4FA; /* very light ocean blue */
+  font-family: 'Segoe UI', sans-serif;
 }
 
 /* ============================= */
-/* Header */
+/* Header & Buttons */
 /* ============================= */
-
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 20px;
 }
 
 .header h2 {
-  color: #2d1f3d;
+  color: #283593;
   font-weight: 600;
+  font-size: 24px;
 }
-
-/* ============================= */
-/* Add Sprint Button (Same Theme) */
-/* ============================= */
 
 .add-btn {
-  background: linear-gradient(135deg, #513162, #6f3d82);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #283593;
   border: none;
   border-radius: 12px;
-  padding: 10px 22px;
-  color: white;
-  font-weight: 600;
-  transition: 0.2s ease;
-}
-
-.add-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 6px 16px rgba(81, 49, 98, 0.3);
-}
-
-/* ============================= */
-/* Table Container */
-/* ============================= */
-
-.table-container {
-  border-radius: 16px;
-  overflow: hidden;
-  background: white;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.08);
-}
-
-/* ============================= */
-/* Table */
-/* ============================= */
-
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-}
-
-/* Header Row */
-th.mat-header-cell {
-  background: #513162;
-  color: white;
-  font-weight: 600;
-  padding: 14px 16px;
-}
-
-/* Body Cells */
-td.mat-cell {
-  background: #ffffff;
-  border-bottom: 1px solid #eee;
-  padding: 12px 16px;
-  color: #444;
-}
-
-/* Row Hover */
-tr.mat-row:hover td {
-  background: #f5f3f9;
-  transition: 0.2s ease;
-}
-
-/* ============================= */
-/* Action Buttons in Table */
-/* ============================= */
-
-.edit-btn mat-icon {
-  color: #513162;
-}
-
-.delete-btn mat-icon {
-  color: #e74c3c;
-}
-
-/* ============================= */
-/* Paginator */
-/* ============================= */
-
-mat-paginator {
-  margin-top: 20px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-  padding: 8px 12px;
-}
-
-/* Remove heavy material shadow */
-.mat-elevation-z8 {
-  box-shadow: none;
-}
-
-
-/* ============================= */
-/* Create Sprint Button Styling */
-/* ============================= */
-.add-btn {
-  display: inline-flex;           /* make icon and text align horizontally */
-  align-items: center;            /* vertical center */
-  gap: 6px;                       /* space between icon and text */
-  background: linear-gradient(135deg, #513162, #6f3d82);
-  border: none;
-  border-radius: 12px;
-  padding: 8px 18px;              /* slightly smaller padding for compact look */
+  padding: 8px 18px;
   color: white;
   font-weight: 600;
   cursor: pointer;
@@ -146,10 +47,112 @@ mat-paginator {
 }
 
 .add-btn mat-icon {
-  font-size: 18px;               
+  font-size: 18px;
 }
 
 .add-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 18px rgba(81, 49, 98, 0.4);
+}
+
+.search-btn {
+  background: white;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 18px;
+  color: #283593;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+/* ============================= */
+/* Table Container */
+/* ============================= */
+.table-container {
+  border-radius: 16px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* ============================= */
+/* Angular Material Table Fixes */
+/* ============================= */
+table.mat-table {
+  width: 100%;
+  table-layout: auto !important; /* allow columns to shrink to content */
+}
+
+/* Override flex layout of cells */
+th.mat-header-cell,
+td.mat-cell {
+  display: table-cell !important; /* disable flex */
+  padding: 8px 12px !important;   /* tighten padding */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Specific columns shrink to content */
+.mat-column-id,
+.mat-column-name,
+.mat-column-startDate,
+.mat-column-endDate {
+  flex: none !important; /* prevent flex stretching */
+  width: auto !important; /* width based on content */
+}
+
+/* Header style */
+th.mat-header-cell {
+  background: #283593;
+  color: white;
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Body cell background */
+td.mat-cell {
+  background: #ffffff;
+  border-bottom: 1px solid #eee;
+  color: #444;
+}
+
+/* Row hover effect */
+tr.mat-row:hover td {
+  background: #f0f6fb;
+  transition: 0.2s ease;
+}
+
+/* Action buttons */
+.edit-btn mat-icon {
+  color: #283593;
+}
+.delete-btn mat-icon {
+  color: #e74c3c;
+}
+
+/* Paginator */
+mat-paginator {
+  margin-top: 16px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  padding: 8px 12px;
+}
+
+/* Remove Material elevation shadows */
+.mat-elevation-z8 {
+  box-shadow: none !important;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 900px) {
+  .content {
+    padding: 15px;
+  }
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 6px 8px;
+  }
 }

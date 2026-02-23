@@ -22,7 +22,7 @@ bootstrapApplication(AppComponent, {providers: [
         deps: [AuthService],
         multi: true
     },
-    importProvidersFrom(BrowserAnimationsModule, BrowserAnimationsModule),
+    importProvidersFrom(BrowserAnimationsModule, BrowserAnimationsModule, BrowserAnimationsModule),
     importProvidersFrom(MatPaginator)
 
 ]})

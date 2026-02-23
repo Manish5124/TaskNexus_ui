@@ -1,0 +1,186 @@
+/* =============================
+   Main Container
+============================= */
+
+/* =============================
+   Main Layout (Sidebar + Content)
+============================= */
+.main-layout {
+  display: flex;
+}
+
+/* Sidebar width (must match your sidebar width) */
+app-side-bar {
+  width: 269px;
+  flex-shrink: 0;
+}
+
+/* Dashboard beside sidebar */
+.dashboard-container {
+  flex: 1;
+  padding: 30px;
+  background: #E8EDF5;
+  min-height: calc(100vh - 60px); /* subtract navbar height */
+}
+.dashboard-container {
+  padding: 20px;
+  background: #E8EDF5;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* =============================
+   Summary Cards
+============================= */
+.summary-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.summary-card {
+  flex: 1;
+  min-width: 220px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 6px 20px rgba(40, 53, 147, 0.08);
+  transition: 0.3s ease;
+}
+
+.summary-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(40, 53, 147, 0.15);
+}
+
+.card-icon {
+  font-size: 36px;
+  color: #283593;
+}
+
+.card-info h3 {
+  margin: 0;
+  font-size: 14px;
+  color: #64748B;
+}
+
+.card-info h2 {
+  margin: 4px 0 0;
+  color: #283593;
+}
+
+/* =============================
+   Bottom Section
+============================= */
+.bottom-section {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+/* Section Title */
+.section-title {
+  margin-bottom: 15px;
+  color: #283593;
+  font-weight: 600;
+}
+
+/* =============================
+   Projects Section
+============================= */
+.projects-section {
+  flex: 2;
+  min-width: 300px;
+}
+
+.project-cards {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.project-card {
+  flex: 1;
+  min-width: 250px;
+  padding: 20px;
+  border-radius: 16px;
+  background: white;
+  box-shadow: 0 6px 20px rgba(40, 53, 147, 0.08);
+}
+
+.project-card h3 {
+  margin: 0 0 5px;
+  color: #283593;
+}
+
+.project-card p {
+  margin: 0 0 10px;
+  font-size: 13px;
+  color: #64748B;
+}
+
+.progress-label {
+  font-size: 12px;
+  color: #64748B;
+}
+
+/* =============================
+   Users Section
+============================= */
+.users-section {
+  flex: 1;
+  min-width: 250px;
+}
+
+.user-card {
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  background: white;
+  box-shadow: 0 4px 12px rgba(40, 53, 147, 0.08);
+}
+
+.user-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #334155;
+}
+
+/* =============================
+   Progress Bar Theme Override
+============================= */
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #283593;
+}
+
+::ng-deep .mat-progress-bar-buffer {
+  background: #E8EDF5;
+}
+
+.card-icon {
+  font-size: 42px;      /* bigger */
+  width: 42px;
+  height: 42px;
+  color: #283593;
+}
+
+/* Optional: add soft background circle */
+.summary-card mat-icon {
+  background: rgba(40, 53, 147, 0.1);
+  padding: 12px;
+  border-radius: 50%;
+}
+/* =============================
+   Responsive
+============================= */
+@media screen and (max-width: 900px) {
+  .bottom-section {
+    flex-direction: column;
+  }
+}

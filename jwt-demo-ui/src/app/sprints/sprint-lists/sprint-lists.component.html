@@ -1,72 +1,81 @@
 <app-nav-bar></app-nav-bar>
 
 <div class="main-layout">
-
   <!-- Content -->
   <div class="content">
-
     <div class="header">
       <h2>Sprint List</h2>
-       <div style="display: flex; gap: 10px;">
+      <div style="display: flex; gap: 10px">
+        <input class=" search-btn"
+          type="number"
+          [(ngModel)]="sprintId"
+          placeholder="Search by ID"
+        />
+        <button  class ="add-btn" (click)="searchProjectById()">Search</button>
 
-    <button class="add-btn" (click)="createSprint()">
-      <mat-icon>add</mat-icon> Create Sprint
-    </button>
+        <button class="add-btn" (click)="createSprint()">
+          <mat-icon>add</mat-icon> Create Sprint
+        </button>
 
-    <button class="add-btn" (click)="assignTask()">
-      <mat-icon>assignment</mat-icon> Assign Task
-    </button>
-
-  </div>
+        <button class="add-btn" (click)="assignTask()">
+          <mat-icon>assignment</mat-icon> Assign Task
+        </button>
+      </div>
     </div>
 
     <div class="table-container">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef>ID</th>
+          <td mat-cell *matCellDef="let sprint">{{ sprint.id }}</td>
+        </ng-container>
 
         <!-- Name Column -->
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let sprint"> {{ sprint.name }} </td>
+          <th mat-header-cell *matHeaderCellDef>Name</th>
+          <td mat-cell *matCellDef="let sprint">{{ sprint.name }}</td>
         </ng-container>
 
         <!-- Start Date Column -->
         <ng-container matColumnDef="startDate">
-          <th mat-header-cell *matHeaderCellDef> Start Date </th>
-          <td mat-cell *matCellDef="let sprint"> {{ sprint.startDate }} </td>
+          <th mat-header-cell *matHeaderCellDef>Start Date</th>
+          <td mat-cell *matCellDef="let sprint">{{ sprint.startDate }}</td>
         </ng-container>
-
-        <!-- Created Date Column -->
-        <ng-container matColumnDef="createdDate">
-          <th mat-header-cell *matHeaderCellDef> Created Date </th>
-          <td mat-cell *matCellDef="let sprint"> {{ sprint.createdDate | date: "yyyy-MM-dd" }} </td>
-        </ng-container>
-
         <!-- End Date Column -->
         <ng-container matColumnDef="endDate">
-          <th mat-header-cell *matHeaderCellDef> End Date </th>
-          <td mat-cell *matCellDef="let sprint"> {{ sprint.endDate }} </td>
+          <th mat-header-cell *matHeaderCellDef>End Date</th>
+          <td mat-cell *matCellDef="let sprint">{{ sprint.endDate }}</td>
         </ng-container>
 
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> Actions </th>
+          <th mat-header-cell *matHeaderCellDef>Actions</th>
           <td mat-cell *matCellDef="let sprint">
-            <button mat-icon-button class="action-btn edit-btn" (click)="editSprint(sprint)">
+            <button
+              mat-icon-button
+              class="action-btn edit-btn"
+              (click)="editSprint(sprint)"
+            >
               <mat-icon>edit</mat-icon>
             </button>
-            <button mat-icon-button class="action-btn delete-btn" (click)="deleteSprint(sprint.id)">
+            <button
+              mat-icon-button
+              class="action-btn delete-btn"
+              (click)="deleteSprint(sprint)"
+            >
               <mat-icon>delete</mat-icon>
             </button>
           </td>
         </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
     </div>
 
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" showFirstLastButtons></mat-paginator>
-
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 50]"
+      showFirstLastButtons
+    ></mat-paginator>
   </div>
 </div>
