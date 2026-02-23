@@ -43,6 +43,12 @@ ngOnInit(): void {
         else if (state.auth.role === 'PROJECT_MANAGER') {
           this.router.navigate(['/sprint-lists']);
         }
+        else if (state.auth.role === 'TEAM_MEMBER') {
+          this.router.navigate(['/task']);
+        }
+        else{
+          this.router.navigate(['/login']);
+        }
       }
 
       if (state.error) {

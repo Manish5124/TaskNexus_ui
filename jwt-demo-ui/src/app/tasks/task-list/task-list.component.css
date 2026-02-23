@@ -1,0 +1,157 @@
+.dashboard-container {
+  padding: 32px;
+  background: linear-gradient(135deg, #eef2f7, #f8fafc);
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h2 {
+  font-size: 26px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.subtitle {
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 4px;
+}
+
+.create-btn {
+  border-radius: 8px !important;
+  padding: 6px 18px !important;
+  font-weight: 500;
+}
+
+/* FILTER CARD */
+.filter-card {
+  border-radius: 14px !important;
+  margin-bottom: 25px;
+  padding: 20px !important;
+}
+
+.filters {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* ANALYTICS */
+.analytics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  margin-bottom: 25px;
+}
+
+.analytics-card {
+  padding: 20px;
+  border-radius: 14px !important;
+  transition: 0.3s ease;
+}
+
+.analytics-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.analytics-card h3 {
+  font-size: 22px;
+  margin: 5px 0;
+}
+
+.analytics-card p {
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.analytics-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.analytics-icon {
+  font-size: 40px;
+  opacity: 0.2;
+}
+
+.completed {
+  border-left: 6px solid #22c55e;
+}
+
+.overdue {
+  border-left: 6px solid #ef4444;
+}
+
+/* TASK PANELS */
+.task-panel {
+  margin-bottom: 14px;
+  border-radius: 14px !important;
+  transition: 0.2s ease;
+}
+
+.task-panel:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.task-content {
+  padding: 20px 0;
+}
+
+.meta-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 12px;
+}
+
+.description {
+  font-size: 14px;
+  margin-bottom: 14px;
+  color: #374151;
+}
+
+.dates {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 14px;
+}
+
+.action-buttons {
+  text-align: right;
+}
+
+/* Priority Chip */
+.priority-chip {
+  background: #e0e7ff !important;
+  color: #3730a3 !important;
+  font-weight: 500;
+}
+
+/* Status Chips */
+::ng-deep .mat-chip.todo {
+  background-color: #fbbf24 !important;
+  color: black !important;
+}
+
+::ng-deep .mat-chip.inprogress {
+  background-color: #3b82f6 !important;
+  color: white !important;
+}
+
+::ng-deep .mat-chip.completed {
+  background-color: #22c55e !important;
+  color: white !important;
+}
