@@ -12,14 +12,12 @@ export class HelloService {
 
   helloUser(){
     return this.http.get<{message: string}>(environment.apiBaseUrl+"/api/user/hello")
-    // const headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authService.token})
-    // return this.http.get<{message: string}>(environment.apiBaseUrl+"/api/user/hello", {headers: headers})
+
   }
 
   helloAdmin(){
     return this.http.get<{message: string}>(environment.apiBaseUrl+"/api/admin/hello")
-    // const headers = new HttpHeaders({'Authorization': 'Bearer '+ this.authService.token})
-    // return this.http.get<{message: string}>(environment.apiBaseUrl+"/api/admin/hello", {headers: headers})
+   
   }
 
 }

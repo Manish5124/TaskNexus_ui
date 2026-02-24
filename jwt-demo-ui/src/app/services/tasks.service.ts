@@ -36,22 +36,22 @@ export class TasksService {
 
 
 
-    // ✅ Get All Tasks (No ApiResponse wrapper)
+
   getAllTask(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/getAllTasks`);
   }
 
-  // ✅ Create Task
+
   createTask(request: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/createtask`, request);
   }
 
-  // ✅ Get Tasks By User
+
   getTasksByUserId(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/tasksbyuser/${id}`);
   }
 
-  // ✅ Get Tasks By Sprint
+
   getTasksBySprintId(id: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/tasksbysprintid/${id}`);
   }
@@ -76,5 +76,5 @@ export class TasksService {
     return this.http.get(`${this.baseUrl}/getOverdueTasksByUser/${id}`);
   }
 
-  
+
 }

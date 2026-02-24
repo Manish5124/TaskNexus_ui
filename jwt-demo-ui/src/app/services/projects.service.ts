@@ -12,26 +12,28 @@ export class ProjectsService {
 
   constructor(private http: HttpClient) { }
 
+ 
+
   getAllProjects(){
-    return this.http.get<any>(`http://localhost:8080/api/project/allprojects`)
+    return this.http.get<any>(`${environment.apiBaseUrl}/api/project/allprojects`)
   }
 
   deleteProjectById(id:number){
-    return this.http.delete(`http://localhost:8080/api/project/${id}`,  { responseType: 'text' } )
+    return this.http.delete(`${environment.apiBaseUrl}/api/project/${id}`,  { responseType: 'text' } )
   }
 
   createProject(data:any){
-    return this.http.post('http://localhost:8080/api/project',data,  { responseType: 'text' } )
+    return this.http.post(`${environment.apiBaseUrl}/api/project`,data,  { responseType: 'text' } )
   }
 
   getProjectById(id: number) {
-  return this.http.get(`http://localhost:8080/api/project/${id}`);
+  return this.http.get(`${environment.apiBaseUrl}/api/project/${id}`);
 }
 
 getAllMembers(){
-  return this.http.get<any>(`http://localhost:8080/api/auth/by-role/TEAM_MEMBER`)
+  return this.http.get<any>(`${environment.apiBaseUrl}/api/auth/by-role/TEAM_MEMBER`)
 }
 getAllProjectManagers(){
-  return this.http.get<any>(`http://localhost:8080/api/auth/by-role/PROJECT_MANAGER`)
+  return this.http.get<any>(`${environment.apiBaseUrl}/api/auth/by-role/PROJECT_MANAGER`)
 }
 }

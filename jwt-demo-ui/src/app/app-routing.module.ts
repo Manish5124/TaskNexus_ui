@@ -18,14 +18,12 @@ export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'admin', component: AdminComponent },
   { path: 'navbar', component: NavBarComponent },
   { path: 'member', component: MemberComponent },
   { path: 'project-manager', component: ProjectManagerComponent },
   { path: 'create-project', component: CreateProjectComponent },
-  // { path: 'assign-tasks', component: AssignTasksComponent },
   { path: 'dashbored', component: DashboredPageComponent },
-  {path:'create-task', component: CreateTaskComponent},
+  { path: 'create-task', component: CreateTaskComponent },
 
   {
     path: 'admin',
