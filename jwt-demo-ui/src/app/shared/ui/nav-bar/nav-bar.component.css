@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   padding: 0 16px;
-  background-color: #283593; /* deep ocean navy */
+  background-color: #283593;
   color: #ffffff;
   height: 60px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -22,4 +22,52 @@
 
 .spacer {
   flex: 1 1 auto;
+}
+
+/* Profile Section */
+.profile-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.profile-icon {
+  font-size: 32px;
+  margin-right: 8px;
+}
+
+.username {
+  margin-right: 4px;
+  font-weight: 500;
+}
+
+.dropdown-icon {
+  font-size: 24px;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+  position: absolute;
+  top: 60px; /* toolbar height */
+  right: 0;
+  background-color: #ffffff;
+  color: #000;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  min-width: 120px;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-btn {
+  justify-content: flex-start;
+  width: 100%;
+  text-align: left;
+  color: #000;
+}
+
+.dropdown-btn mat-icon {
+  margin-right: 8px;
 }

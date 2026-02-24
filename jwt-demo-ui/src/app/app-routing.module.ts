@@ -11,28 +11,33 @@ import { CreateProjectComponent } from './projects/create-project/create-project
 import { SprintListsComponent } from './sprints/sprint-lists/sprint-lists.component';
 import { AssignTasksComponent } from './tasks/assign-tasks/assign-tasks.component';
 import { TaskListComponent } from './tasks/task-list/task-list.component';
+import { DashboredPageComponent } from './dashboard/dashbored-page/dashbored-page.component';
+import { CreateTaskComponent } from './tasks/create-task/create-task.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  // { path: 'admin', component: AdminComponent },
+  { path: 'admin', component: AdminComponent },
   { path: 'navbar', component: NavBarComponent },
   { path: 'member', component: MemberComponent },
   { path: 'project-manager', component: ProjectManagerComponent },
   { path: 'create-project', component: CreateProjectComponent },
-  // { path: 'sprint-lists', component: SprintListsComponent },
-  { path: 'assign-tasks', component: AssignTasksComponent },
-  // {path: 'user',
-  //   canActivate:[AuthGuard, RoleGuard],
-  //   data: {roles: ['USER', 'ADMIN'] },
-  //   component: UserComponent},
+  // { path: 'assign-tasks', component: AssignTasksComponent },
+  { path: 'dashbored', component: DashboredPageComponent },
+  {path:'create-task', component: CreateTaskComponent},
+
   {
     path: 'admin',
     canActivate: [AuthGuard, RoleGuard],
     data: { roles: ['ADMIN'] },
-    component: AdminComponent,
+    children: [
+      { path: 'dashboard', component: DashboredPageComponent },
+      { path: 'projects', component: AdminComponent },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    ],
   },
+
   {
     path: 'sprint-lists',
     canActivate: [AuthGuard, RoleGuard],

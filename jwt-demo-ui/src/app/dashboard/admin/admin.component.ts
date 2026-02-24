@@ -122,14 +122,7 @@ export class AdminComponent implements OnInit {
   }
 
   deleteProject(row: Project) {
-    // const index =this.dataSource.data.indexOf(row)
-    // if(index>=0){
-    //   this.dataSource.data.splice(index,1)
-    //   this.snackbar.open("Project Deleted Succesfully!",'close',{
-    //    duration:3000,
-    //    verticalPosition:'top'
-    //   })
-    // }
+
     this.projects.deleteProjectById(row.id).subscribe({
       next: (res) => {
         console.log('Project ID deleted: ' + row.id);
@@ -153,31 +146,11 @@ export class AdminComponent implements OnInit {
       data: project,
     });
   }
-
-  editProject(project: Project): void {
-    const dialogRef = this.dialog.open(UpdateProjectComponent, {
-      width: '800px',
-      data: { ...project },
-    });
-
-    dialogRef.afterClosed().subscribe((updatedProject: Project) => {
-      if (updatedProject) {
-        const projects = this.dataSource.data.map((p) =>
-          p.projectName === updatedProject.projectName ? updatedProject : p,
-        );
-        localStorage.setItem('projects', JSON.stringify(projects));
-        this.dataSource.data = projects;
-      }
-    });
-  }
 }
 
 export interface Project {
   id: number;
   projectName: string;
   createdDate: string;
-  // manager: string;
   isActive: boolean;
-
-  // description: string;
 }

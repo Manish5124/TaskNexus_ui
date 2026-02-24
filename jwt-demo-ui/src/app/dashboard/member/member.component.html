@@ -11,48 +11,41 @@
 
     <div class="header">
       <h2>List of Members</h2>
-      <button class="action-btn add-btn" (click)="openAddMemberDialog()">+ Add Member</button>
+      <!-- <button class="action-btn add-btn" (click)="openAddMemberDialog()">+ Add Member</button> -->
     </div>
 
     <div class="table-container">
       <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-        <!-- ID Column -->
-        <ng-container matColumnDef="id">
-          <th mat-header-cell *matHeaderCellDef> ID </th>
-          <td mat-cell *matCellDef="let member"> {{member.id}} </td>
-        </ng-container>
-
         <!-- Name Column -->
-        <ng-container matColumnDef="name">
+        <ng-container matColumnDef="username">
           <th mat-header-cell *matHeaderCellDef> Name </th>
-          <td mat-cell *matCellDef="let member"> {{member.name}} </td>
+          <td mat-cell *matCellDef="let member"> {{member.username}} </td>
         </ng-container>
 
         <!-- Project Name Column -->
-        <ng-container matColumnDef="projectName">
+        <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef> Project Name </th>
-          <td mat-cell *matCellDef="let member"> {{member.projectName}} </td>
+          <td mat-cell *matCellDef="let member"> {{member.email}} </td>
         </ng-container>
+      <!-- status Column -->
+        <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef> Status </th>
+      <td mat-cell *matCellDef="let row">
+        <span [ngClass]="row.isActive ? 'active-status' : 'inactive-status'">
+          {{ row.isActive ? 'Active' : 'Inactive' }}
+        </span>
+      </td>
+    </ng-container>
 
-        <!-- Manager Name Column -->
-        <ng-container matColumnDef="managerName">
-          <th mat-header-cell *matHeaderCellDef> Manager Name </th>
-          <td mat-cell *matCellDef="let member"> {{member.managerName}} </td>
-        </ng-container>
 
-        <!-- Actions Column -->
-        <ng-container matColumnDef="actions">
-          <th mat-header-cell *matHeaderCellDef> Actions </th>
-          <td mat-cell *matCellDef="let member">
-            <button mat-icon-button class="action-btn edit-btn" (click)="editMember(member)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button class="action-btn delete-btn" (click)="deleteMember(member.id)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </ng-container>
+      <!-- Created Date -->
+    <ng-container matColumnDef="createdDate">
+      <th mat-header-cell *matHeaderCellDef> Created Date </th>
+      <td mat-cell *matCellDef="let row">
+        {{row.createdDate | date:'mediumDate'}}
+      </td>
+    </ng-container>
 
         <!-- Header and Row -->
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

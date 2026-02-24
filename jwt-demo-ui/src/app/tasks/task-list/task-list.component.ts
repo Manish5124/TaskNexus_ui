@@ -14,6 +14,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 
 import { TasksService } from 'src/app/services/tasks.service';
 import { CreateTaskComponent } from '../create-task/create-task.component';
+import { NavBarComponent } from 'src/app/shared/ui/nav-bar/nav-bar.component';
 
 @Component({
   selector: 'app-task-list',
@@ -28,7 +29,8 @@ import { CreateTaskComponent } from '../create-task/create-task.component';
     MatButtonModule,
     MatSelectModule,
     MatProgressBarModule,
-    MatDialogModule
+    MatDialogModule,
+    NavBarComponent
   ],
   templateUrl: './task-list.component.html',
   styleUrls: ['./task-list.component.css']
@@ -148,7 +150,7 @@ export class TaskListComponent implements OnInit {
       default: return '';
     }
   }
-  
+
 }
 
 export interface TaskResponse {

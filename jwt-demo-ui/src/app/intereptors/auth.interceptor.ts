@@ -7,7 +7,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
     const auth = inject(AuthService)
 
     // Attach access token in to header
-    const addToken = (request: typeof req) => 
+    const addToken = (request: typeof req) =>
         auth.token ? request.clone({
             setHeaders: { Authorization: 'Bearer '+ auth.token}
         }) : request
@@ -15,6 +15,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
         return next(addToken(req)).pipe(
             catchError((error: HttpErrorResponse) => {
                 console.log(req)
+                console.log('Token:', auth.token)
                 // only attempt refresh for non-refresh api calls
                 if(error.status == 401 && !req.url.includes('/auth/refresh')){
                     return auth.refreshToken().pipe(

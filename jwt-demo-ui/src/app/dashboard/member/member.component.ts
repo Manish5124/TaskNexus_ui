@@ -1,3 +1,4 @@
+import { ProjectsService } from 'src/app/services/projects.service';
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTableDataSource } from '@angular/material/table';
@@ -43,90 +44,59 @@ import { MatDialogModule } from '@angular/material/dialog';
 export class MemberComponent {
 
   displayedColumns: string[] = [
-    'id',
-    'name',
-    'projectName',
-    'managerName',
-    'actions'
+    'username',
+    'email',
+    'createdDate',
+    'status'
   ];
 
   dataSource = new MatTableDataSource<Member>([]);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+    private projectsService:ProjectsService
+  ) {}
 
   ngOnInit() {
     const storedData = localStorage.getItem('members');
     if (storedData) {
       this.dataSource.data = JSON.parse(storedData);
     }
+    this.getAllMembers()
+  }
+  getAllMembers(){
+    this.projectsService.getAllMembers().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        console.log('list of members =>', res);
+      },
+      error: (res) => {
+        console.log('error Response' + res);
+      },
+    });
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-  getNextId(): number {
-    const data = this.dataSource.data;
-    if (data.length === 0) return 1;
-    return Math.max(...data.map(m => m.id)) + 1;
-  }
+ 
 
-  openAddMemberDialog() {
-    const dialogRef = this.dialog.open(CreateMemberComponent, {
-      width: '500px'
-    });
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-        const newMember: Member = {
-          id: this.getNextId(),
-          ...result
-        };
-
-        const updatedData = [...this.dataSource.data, newMember];
-        this.dataSource.data = updatedData;
-
-        localStorage.setItem('members', JSON.stringify(updatedData));
-      }
-    });
-  }
-
-  deleteMember(id: number) {
-    const updatedData = this.dataSource.data.filter(m => m.id !== id);
-    this.dataSource.data = updatedData;
-    localStorage.setItem('members', JSON.stringify(updatedData));
-  }
-
- editMember(member: Member) {
-
-  const dialogRef = this.dialog.open(CreateMemberComponent, {
-    width: '500px',
-    data: member   // ✅ send existing data
-  });
-
-  dialogRef.afterClosed().subscribe(result => {
-    if (result) {
-
-      const updatedData = this.dataSource.data.map(m =>
-        m.id === member.id
-          ? { ...m, ...result }
-          : m
-      );
-
-      this.dataSource.data = updatedData;
-
-      // ✅ update localStorage
-      localStorage.setItem('members', JSON.stringify(updatedData));
-    }
-  });
-}
 }
 
 export interface Member {
-  id: number;
-  name: string;
-  projectName: string;
-  managerName: string;
+  username: string;
+  email: string;
+  createdDate: string;
+  isActive: boolean;
 }
+
+  // {
+  //       "username": "projectmanager",
+  //       "email": "projectmanager@gmail.com",
+  //       "createdDate": "2026-02-17 14:53:57",
+  //       "isActive": true
+  //   },

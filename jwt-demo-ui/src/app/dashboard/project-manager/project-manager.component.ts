@@ -12,6 +12,7 @@ import { SideBarComponent } from 'src/app/shared/ui/side-bar/side-bar.component'
 import { NavBarComponent } from 'src/app/shared/ui/nav-bar/nav-bar.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateManagerComponent } from 'src/app/managers/create-manager/create-manager.component';
+import { ProjectsService } from 'src/app/services/projects.service';
 
 @Component({
   selector: 'app-project-manager',
@@ -32,11 +33,10 @@ import { CreateManagerComponent } from 'src/app/managers/create-manager/create-m
 export class ProjectManagerComponent  implements OnInit, AfterViewInit {
 
     displayedColumns: string[] = [
-    'id',
-    'managerName',
-    'assignedProject',
+    'username',
+    'email',
     'createdDate',
-    'actions'
+    'status'
   ];
 
   dataSource = new MatTableDataSource<ProjectManager>([]);
@@ -44,14 +44,26 @@ export class ProjectManagerComponent  implements OnInit, AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog) {}
+  constructor(private dialog: MatDialog,
+    private projectService: ProjectsService
+  ) {}
 
-  // ✅ Load data from localStorage when component loads
   ngOnInit() {
-    const storedData = localStorage.getItem('projectManagers');
-    if (storedData) {
-      this.dataSource.data = JSON.parse(storedData);
-    }
+    this.getAllManagers()
+
+  }
+  getAllManagers() {
+    this.projectService.getAllProjectManagers().subscribe({
+      next: (res) => {
+        this.dataSource = new MatTableDataSource(res);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+        console.log('list of project =>', res);
+      },
+      error: (res) => {
+        console.log('error Response' + res);
+      },
+    });
   }
 
   ngAfterViewInit() {
@@ -59,59 +71,11 @@ export class ProjectManagerComponent  implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  // ✅ Get next ID dynamically
-  getNextId(): number {
-    const data = this.dataSource.data;
-
-    if (data.length === 0) {
-      return 1;
-    }
-
-    return Math.max(...data.map(m => m.id)) + 1;
-  }
-
-  openAddManagerDialog() {
-    const dialogRef = this.dialog.open(CreateManagerComponent, {
-      width: '500px'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result) {
-
-        const newManager: ProjectManager = {
-          id: this.getNextId(),
-          managerName: result.managerName,
-          assignedProject: result.assignedProject,
-          createdDate: result.createdDate
-        };
-
-        const updatedData = [...this.dataSource.data, newManager];
-
-        this.dataSource.data = updatedData;
-
-        // ✅ Save to localStorage
-        localStorage.setItem('projectManagers', JSON.stringify(updatedData));
-      }
-    });
-  }
-
-  deleteManager(id: number) {
-    const updatedData = this.dataSource.data.filter(m => m.id !== id);
-
-    this.dataSource.data = updatedData;
-
-    // ✅ Update localStorage
-    localStorage.setItem('projectManagers', JSON.stringify(updatedData));
-  }
-
-  // editManager(manager: ProjectManager) {
-  //   console.log('Editing manager:', manager);
-  // }
 }
 export interface ProjectManager {
-  id: number;
-  managerName: string;
-  assignedProject: string;
+  username: string;
+  email: string;
+  isActive: string ;
   createdDate: string;
 }
 

@@ -1,8 +1,20 @@
 <mat-toolbar color="primary" class="navbar">
   <mat-icon class="menu-icon">menu</mat-icon>
-  <span class="title">TMS </span>
+  <span class="title">TMS</span>
   <span class="spacer"></span>
 
-    <h2>Hi, {{username}}</h2>
+  <div class="profile-container" (click)="toggleDropdown()">
+    <mat-icon class="profile-icon">account_circle</mat-icon>
+    <span class="username">{{ username }}</span>
+    <mat-icon class="dropdown-icon">
+      {{ dropdownOpen ? 'arrow_drop_up' : 'arrow_drop_down' }}
+    </mat-icon>
 
+    <div class="dropdown-menu" *ngIf="dropdownOpen">
+      <button mat-button class="dropdown-btn" (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        Logout
+      </button>
+    </div>
+  </div>
 </mat-toolbar>

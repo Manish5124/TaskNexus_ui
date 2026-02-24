@@ -19,6 +19,7 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CreateTaskComponent } from 'src/app/tasks/create-task/create-task.component';
 
 @Component({
   selector: 'app-sprint-lists',
@@ -56,7 +57,7 @@ export class SprintListsComponent {
     private sprintService: SprintsService,
     private snackbar: MatSnackBar,
     private datePipe: DatePipe,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -159,9 +160,12 @@ export class SprintListsComponent {
   viewSprint(id: number) {
     console.log("View Sprint");
   }
+assignTask() {
+  this.dialog.open(CreateTaskComponent, {
+    width: '700px',
+    disableClose: true
+  });
 
-  assignTask() {
-  this.router.navigate(['/assign-tasks']);
 }
 }
 

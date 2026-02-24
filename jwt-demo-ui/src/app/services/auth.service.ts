@@ -11,6 +11,7 @@ export class AuthService {
   private authApiUrl = environment.apiBaseUrl + '/api/auth'
   private userSubject = new BehaviorSubject<AuthResponse | null> (null)
   private accessToken: string | null =  null
+  public user$ = this.userSubject.asObservable();
 
   constructor(private http: HttpClient) { }
 
@@ -40,7 +41,7 @@ export class AuthService {
   }
 
   refreshToken() {
-    return this.http.post<AuthResponse>(this.authApiUrl+"/refresh", 
+    return this.http.post<AuthResponse>(this.authApiUrl+"/refresh",
                                             {}, {withCredentials: true})
                                             .pipe(
                                               tap(res => this.setAccessToken(res))
@@ -57,6 +58,7 @@ export class AuthService {
                           })
                         )
   }
+
 
   setAccessToken(auth: AuthResponse){
     this.accessToken = auth.accessToken

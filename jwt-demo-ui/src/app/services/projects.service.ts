@@ -13,7 +13,7 @@ export class ProjectsService {
   constructor(private http: HttpClient) { }
 
   getAllProjects(){
-    return this.http.get<any>(this.baseUrl)
+    return this.http.get<any>(`http://localhost:8080/api/project/allprojects`)
   }
 
   deleteProjectById(id:number){
@@ -26,5 +26,12 @@ export class ProjectsService {
 
   getProjectById(id: number) {
   return this.http.get(`http://localhost:8080/api/project/${id}`);
+}
+
+getAllMembers(){
+  return this.http.get<any>(`http://localhost:8080/api/auth/by-role/TEAM_MEMBER`)
+}
+getAllProjectManagers(){
+  return this.http.get<any>(`http://localhost:8080/api/auth/by-role/PROJECT_MANAGER`)
 }
 }
